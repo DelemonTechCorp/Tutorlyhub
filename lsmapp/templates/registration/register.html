@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  </head>
+  <style>
+    .register-animation{
+      display: flex;
+      align-items: center;
+      justify-content:center;
+      flex-direction: column;
+      width:100%;
+      background-image: linear-gradient(rgba(0, 81, 255, 0.4), rgba(0, 81, 255, 0.4)),url('https://images.pexels.com/photos/5428011/pexels-photo-5428011.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+      background-size: cover;
+      height:100vh;
+      padding:10%;
+    }
+    .register-animation p{
+        text-align:center;
+        color:white;
+        line-height:1.6;
+    }
+    .register-animation h3{
+      font-weight: 700;
+    }
+    form label{
+      font-size: 13px;
+    }
+    .form-control{
+      font-size: 13px;
+    }
+  </style>
+  <body class="bg-light">
+  <div class="container-fluid mb-5">
+<div class="row">
+  <div class="col-md-6">
+<div class="register-animation">
+  <h3 class="text-center mb-5 text-light">Find Private Tutoring Jobs</h3>
+<p>Become a private language tutor in your city and earn money for discussing with people in your native language. No qualifications or certifications are needed as long as you are a native speaker in the language you feel confident to share and teach!</p>
+<p>TutorlyHub helps you find more students who want to learn your mother tongue online or offline, in your city. By finding you new tutoring jobs weekly, our team will help you keep your calendar fully booked.</p>
+<p>Please fill out this form and we will get back to you via TutorlyHub Messenger within 3 working days to get you started!</p>
+</div>
+  </div>
+<div class="col-md-6 card  p-3">
+    <h3 class="text-center mb-5 mt-2" style="color:#38B6FF;">Sign Up To Become A Tutor</h3>
+       <form method="post" action="/registrationstep1" onsubmit="handlePostComment()" >
+            {% csrf_token %}
+            <div class="col">
+              <div class="form-group mb-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="What's First Your Name?"
+                  name="firstname"
+                  id="firstname"
+                  value=""
+                  required
+                />
+                <p class="error-message" style="color: red" id="name-error"></p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group mb-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Your Last Name?"
+                  name="lastname"
+                  id="lastname"
+                  value=""
+                />
+                <p
+                  class="error-message"
+                  style="color: red"
+                  id="name2-error"
+                ></p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group mb-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="What's your email?"
+                  name="email"
+                  id="email"
+                  value=""
+                />
+                <p
+                  class="error-message"
+                  style="color: red"
+                  id="email-error"
+                ></p>
+              </div>
+              </div>
+            <div class="col">
+              <div class="form-group mb-4">
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Set a Password"
+                  name="password"
+                  value=""
+                  id=""
+                />
+                <p
+                  class="error-message"
+                  style="color: red"
+                  id=""
+                ></p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group mb-4">
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Confirm Password"
+                  name="confirmpassword"
+                  id="confirmpassword"
+                  value=""
+                />
+                <p
+                  class="error-message"
+                  style="color: red"
+                  id="education-error"
+                ></p>
+              </div>
+            </div>
+            <input type="Submit" name="Submit" class="btn text-light w-50" style="background-color:#38B6FF;" value="SUBMIT" />
+        </form>
+        <p class="mb-3 mt-3">By registering, I declare that I accept <span style="color:#38B6FF;">Tutorlyhub Terms and Conditions.</span></p>
+    </div>
+  </div>
+    </div>
+    
+    
+      <script
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"
+      ></script>
+    </body>
+  </html>

@@ -1,0 +1,1237 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+{% block title %}{% endblock %}
+{% load static %}
+{% load course_tags %}
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/img/Tutorlyhub_logo_4.png' %}">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&amp;family=Lora:wght@400;700&amp;family=Montserrat:wght@400;500;600;700&amp;family=Nunito:wght@400;700&amp;display=swap" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+
+    <!-- Libs CSS -->
+    <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/%40fancyapps/fancybox/dist/jquery.fancybox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/aos/dist/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/choices.js/public/assets/styles/choices.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/flickity-fade/flickity-fade.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/flickity/dist/flickity.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/highlightjs/styles/vs2015.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/jarallax/dist/jarallax.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/quill/dist/quill.core.css' %}" />
+
+    <!-- Map -->
+    <link href='../../../api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
+     <link rel="stylesheet" href="{% static 'assets/css/home2.css' %}">
+
+
+    <title>TutorlyHub</title>
+    <script src="https://kit.fontawesome.com/271880c4da.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+</head>
+<style>
+.animation-item{
+    background-color: white;
+    display: flex;
+    width:100%;
+    align-items: center;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;;
+    flex-direction: column;
+    height:300px;
+    justify-content: space-evenly;
+
+}
+.animation-item a{
+  font-size:16px;
+  text-transform:uppercase;
+}
+.tutor-reviews{
+  display: flex;
+  align-items: center;
+  height: 300px;
+  overflow-x: hidden;
+}
+.tutor-review-card{
+  min-width:400px;
+  height: 250px;
+  margin-right: 20px;
+  animation: scrollreview 10s linear infinite;
+}
+@keyframes scrollreview {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.tutor-reviews:hover .tutor-review-card{
+    animation-play-state: paused;
+}
+.wrapper {
+  height: 400px;
+  display: flex;
+  align-items: center;
+  overflow-x: hidden; /* Change to hidden to prevent double scrollbar */
+  background: linear-gradient(to bottom, #437FC7 50%, white 50%);
+}
+
+.wrapper .item {
+  min-width: 300px;
+  height: 300px;
+  text-align: center;
+  background-color: #ffffff;
+  margin-right: 10px;
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  /* Animation */
+  animation: scrollLeft 5s linear infinite;
+}
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.wrapper:hover .item{
+    animation-play-state: paused;
+}
+.item p{
+  font-size: 15px;
+}
+.student-image{
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid #437FC7;
+}
+.student-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.testimonials-clean {
+  color:#313437;
+  background-color:#eef4f7;
+}
+
+.testimonials-clean p {
+  color:#7d8285;
+}
+
+.testimonials-clean h2 {
+  font-weight:bold;
+  margin-bottom:40px;
+  padding-top:40px;
+  color:#437FD7;
+}
+
+@media (max-width:500px) {
+  .testimonials-clean h2 {
+    margin-bottom:25px;
+    padding-top:25px;
+    font-size:24px;
+  }
+}
+
+.testimonials-clean .intro {
+  font-size:16px;
+  max-width:500px;
+  margin:0 auto;
+}
+
+.testimonials-clean .intro p {
+  margin-bottom:0;
+}
+
+.testimonials-clean .people {
+  padding:50px 0 20px;
+}
+
+.testimonials-clean .item {
+  margin-bottom:32px;
+}
+
+@media (min-width:500px) {
+  .testimonials-clean .item {
+    height:220px;
+  }
+}
+
+.box {
+  padding:30px;
+  background-color:#437FC7;
+  position:relative;
+}
+
+.box:after {
+  content:'';
+  position:absolute;
+  left:30px;
+  bottom:-24px;
+  width:0;
+  height:0;
+  border:15px solid transparent;
+  border-width:12px 15px;
+  border-top-color:#437FC7;
+}
+
+.author {
+  margin-top:28px;
+  padding-left:25px;
+}
+
+.name {
+  font-weight:bold;
+  margin-bottom:2px;
+  color:#437FD7;
+}
+
+.title {
+  font-size:13px;
+  color:#9da9ae;
+}
+
+.description {
+  font-size:15px;
+  margin-bottom:0;
+  color:white;
+}
+
+.author img {
+  max-width:40px;
+  float:left;
+  margin-right:12px;
+  margin-top:-5px;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.logos {
+  overflow: hidden;
+  padding: 60px 0;
+  background: white;
+  white-space: nowrap;
+  position: relative;
+}
+.logos:before,
+.logos:after {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  content: "";
+  z-index: 2;
+}
+
+.logos:before {
+  left: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+}
+
+.logos:after {
+  right: 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+}
+
+.logos:hover .logos-slide {
+  animation-play-state: paused;
+}
+
+.logos-slide {
+  display: inline-block;
+  animation: 25s slide infinite linear;
+}
+
+.logos-slide img {
+  height: 100px;
+  width:100px;
+  margin: 0 40px;
+}
+.navbar-expand-xl{
+  background-color:white;
+}
+.our-mission{
+    width: 90%;
+    height: 200px;
+    margin: auto;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+}
+.our-mission h1{
+    color: #437FC7;
+}
+.our-mission-2{
+    width: 90%;
+    height: 200px;
+    margin: auto;
+    display: flex;
+    align-items:flex-start;
+    justify-content: space-evenly;
+    flex-direction: column;
+
+}
+.header-main{
+    font-size:40px;
+}
+.become-tutor-button{
+  border: hidden;
+  background-color: #38B6FF;
+  outline: none;
+  height: 35px;
+  border-radius: 5px;
+  font-size: 13px;
+  width: 150px;
+  color: white;
+}
+.login-button{
+  border: hidden;
+  background-color: #38B6FF;
+  outline: none;
+  font-size: 13px;
+  height: 35px;
+  width: 80px;
+  color: white;
+  border-radius: 5px;
+}
+.communitytextmobile{
+    display:none;
+}
+.phone-view-nav{
+  display: none;
+}
+.home-testimonial{background-color:#437FC7;height: 380px}.home-testimonial-bottom{background-color: #f8f8f8;transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;margin-top: 20px;margin-bottom: 0px;position: relative;height: 130px;top: 190px}.home-testimonial h3{color: var(--orange);font-size: 14px;font-weight: 500;text-transform: uppercase}.home-testimonial h2{color: white;font-size: 28px;font-weight: 700}.testimonial-inner{position: relative;top: -174px}.testimonial-pos{position: relative;top: 24px}.testimonial-inner .tour-desc{border-radius: 5px;padding: 40px}.color-grey-3{font-family: "Montserrat", Sans-serif;font-size: 14px;color: #6c83a2}.testimonial-inner img.tm-people{width: 60px;height: 60px;-webkit-border-radius: 50%;border-radius: 50%;-o-object-fit: cover;object-fit: cover;max-width: none}.link-name{font-family: "Montserrat", Sans-serif;font-size: 14px;color: #6c83a2}.link-position{font-family: "Montserrat", Sans-serif;font-size: 12px;color: #6c83a2}
+@media(min-width:320px) and (max-width:480px){
+  .home-testimonial{
+    display: none;
+  }
+  .home-page-container{
+    background-color: white;
+  }
+  .sideimage{
+    display:none;
+  }
+      .communitytextmobile{
+      display:block;
+  }
+  .communitytextmobile2{
+      display:none;
+  }
+  .item{
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+  .phone-view-nav{
+    display: flex;
+    margin: auto;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+
+  }
+  .login-button{
+    font-size: 12px;
+    height: 35px;
+  }
+  .phone-view-nav a{
+    height: 15px;
+    display: flex;
+    margin-right: 5px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #437FC7;
+  }
+  .become-tutor-button{
+    font-size: 12px;
+    height: 35px;
+  }
+  #navbarCollapse{
+    display: none;
+  }
+
+
+}
+</style>
+
+<header class="navbar navbar-expand-xl navbar-light" style="height:80px;">
+    <div class="container">
+
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'assets/img/Tutorlyhub_logo_4.png' %}" class="navbar-brand-img" alt="..." >
+        </a>
+        <div class="phone-view-nav">
+          <a class="nav-link px-xl-4" style="color: #437FD7" href="{% url 'loginform' %}">
+            LOGIN
+        </a>
+        <a class="nav-link px-xl-4" style="color: #437FD7" href="{% url 'register1' %}">
+          REGISTER
+      </a>
+
+        </div>
+
+        <!-- Navigation -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link px-xl-4" style="color: #38B6FF" href="{% url 'loginform' %}">
+                        <button class="login-button">LOGIN</button>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-xl-4" style="color: #38B6FF" href="{% url 'register1' %}">
+                        <button class="become-tutor-button">BECOME A TUTOR</button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</header>
+
+      <!-- HERO
+    ================================================== -->
+
+<section class="home-page-container" style="">
+  <div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-6 d-flex justify-content-center flex-column">
+        <div class="col-10 mx-auto">
+            <h2 class="header-main text-center mt-5" style="color:#38B6FF;font-weight:600;" data-aos="fade-left" data-aos-duration="150">
+              LEARN WITH TUTORLYHUB
+            </h2>
+            <p style="color:#38B6FF;" class="text-center">From quick, practical courses to comprehensive certifications, learn everything you need to know about the most sought-after business skills</p>
+            </div>
+    <form class="w-100" method="get" action="{% url 'search_course' %}" id="searchForm">
+        <div class="container mb-2 w-100">
+            <select class="form-control select2" name="category" id="category">
+                <option value="">Categories</option>
+                {% for i in category %}
+                <option value="{{ i.id }}">{{ i.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="container mb-2 w-100">
+            <select class="form-control select2" name="subject" id="subject">
+                <option value="">What do you want to learn ?</option>
+                <!-- Subjects will be dynamically populated using JavaScript -->
+            </select>
+        </div>
+        <div class="container mb-2 w-100">
+            <select class="form-control select2" name="location" id="location">
+                 <option value="">Add your city</option>
+                {% for location in locations %}
+        <option value="{{ location }}">{{ location }}</option>
+    {% endfor %}
+            </select>
+        </div>
+        <div class="container">
+            <button type="submit" class="btn btn-dark btn-sm w-100" style="background-color:#38B6FF;" aria-label="Search" name="query">
+                FIND A TUTOR NEAR BY YOU
+            </button>
+        </div>
+    </form>
+
+    </div>
+    <div class="col-md-6 sideimage">
+  <img src="{% static 'assets/img/th-bg2.png' %}" class="img-fluid"/>
+  </div>
+  </div>
+</div>
+</section>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+   $(document).ready(function () {
+    $('#category').on('change', function () {
+        var categoryId = $(this).val();
+        var locationId = $('#location').val();  // Get the selected location
+
+        $.ajax({
+            url: '{% url 'get_subjects' %}',
+            method: 'GET',
+            data: { category_id: categoryId, location_id: locationId },  // Include location in the data
+            success: function (data) {
+                console.log('AJAX success:', data);
+                $('#subject').empty();
+                $.each(data.subjects, function (key, value) {
+                    $('#subject').append('<option value="' + value.id + '">' + value.title + '</option>');
+                });
+            },
+            error: function (error) {
+                console.log('AJAX error:', error);
+            }
+        });
+    });
+});
+
+
+</script>
+<!-- FEATURED PRODUCT
+    ================================================== -->
+     <section class="pt-5 pb-9 py-md-11 bg-white">
+        <div class="container container-wd">
+            <div class="row align-items-end mb-7">
+                <div class="col-xl mb-5 mb-xl-0">
+                    <h1 class="mb-1" style="color:#437FC7">Courses</h1>
+                    {% comment %} <p class="font-size-lg text-capitalize mb-0">Discover your perfect program in our courses.</p> {% endcomment %}
+                </div>
+                <div class="col-xl-auto">
+                    <!-- Nav -->
+                    <div class="nav justify-content-lg-start justify-content-xl-center justify-content-center tab-nav-1" id="pills-tab" role="tablist">
+                        <a class="btn-sm btn-pill me-1 mb-1 fw-medium px-6 active"  id="pills-all-tab" data-bs-toggle="tab" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">
+                            All Courses
+                        </a>
+                        {% for i in category %}
+                        <a class="btn-sm btn-pill me-1 mb-1 text-dark fw-medium px-6" id="pills-art-tab" data-bs-toggle="tab" href="#pills-{{i.id}}" role="tab" aria-controls="pills-{{i.id}}" aria-selected="false">
+                            {{i.name}}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content flickity-tab" id="pills-tabContent">
+
+                <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
+                    <!-- Items -->
+                    <div class="row">
+                      {% for i  in course %}
+                    <div class="col-12 col-md-6 col-xl-4 col-wd-3 pb-4 pb-md-7">
+                        <!-- Card -->
+                        <div class="card border shadow p-2 rounded-lg sk-fade">
+                            <!-- Image -->
+                            <div class="card-zoom position-relative">
+                                <div class="badge-float sk-fade-top top-0 right-0 mt-4 me-4">
+
+                                </div>
+
+                                <a href="{{ i.get_absolute_url }}" class="card-img sk-thumbnail d-block">
+                                    <img class="rounded shadow-light-lg" src="{{i.author.author_profile.url}}" alt="...">
+                                </a>
+                                {% comment %} <span class="badge sk-fade-bottom badge-lg badge-primary badge-pill badge-float bottom-0 left-0 mb-4 ms-4 fw-bold">
+                                        <span class="text-white text-uppercase fw-bold font-size-xs">Discount {{i.discount}} %</span>
+                                    </span> {% endcomment %}
+
+                               </div>
+
+                            <!-- Footer -->
+                            <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
+                                <a href="{{ i.get_absolute_url }}" class="d-block">
+                                    <div class="avatar sk-fade-right avatar-xl badge-float position-absolute top-0 right-0 mt-n6 me-5 rounded-circle shadow border border-white border-w-lg">
+                                        <img src="{{i.author.author_profile.url}}" alt="..." class="avatar-img rounded-circle">
+                                    </div>
+                                </a>
+
+                                <!-- Preheading -->
+
+
+                                <!-- Heading -->
+                                <div class="position-relative">
+                                    <a href="{{ i.get_absolute_url }}" class="d-block stretched-link"><h4  style="color:#437FC7;">{{i.author.name}}</h4></a>
+                                       <a href="{{ i.get_absolute_url }}"><span class="mb-1 d-inline-block text-dark-800">{{ i.subject.title }}</span></a>
+
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="font-size-sm">{{i.author.about_author|slice:"0:100"}}</div>
+                                                    </div>
+                                                     <div class="col-auto px-2 text-right">
+
+                                    </div>
+                                    <div>
+                                    </div>
+
+                                    <div class="d-lg-flex align-items-end flex-wrap mb-n1">
+                                        <div class="star-rating mb-2 mb-lg-0 me-lg-3">
+                                            <div class="rating" style="width:50%;"></div>
+                                        </div>
+
+
+                                        <div class="font-size-sm">
+                                            <span>5.45 (5.8k+ reviews)</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mx-n2 align-items-end">
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                               <div class="col-auto px-2 text-right">
+                                             {% if i.price == 0 %}
+                                         <div class="col-auto px-2 text-right">
+                                              {% comment %} <del class="font-size-sm">₹ {{i.price}}</del> {% endcomment %}
+                                             <ins class="h4 mb-0 d-block mb-lg-n1"><a href="#" class="badge badge-primary">free</a></ins>
+                                           </div>
+
+
+                                        {% else %}
+                                      <div class="col-auto px-2 text-right">
+                                              {% comment %} <del class="font-size-sm">AED{{i.price}}</del> {% endcomment %}
+                                             <ins class="h4 mb-0 d-block mb-lg-n1">$ {{i.price}}/hour</ins>
+                                           </div>
+                                           {% endif %}
+                                    </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                    </div>
+                </div>
+
+
+            {% for cat in category %}
+
+
+                <div class="tab-pane fade" id="pills-{{cat.id}}" role="tabpanel" aria-labelledby="pills-art-tab">
+                    <!-- Items -->
+<div class="row">
+                        {% for i in course %}
+                           {% if i.category.id == cat.id %}
+                        <div class="col-12 col-md-6 col-xl-4 col-wd-3 pb-4 pb-md-7" style="padding-right:15px;padding-left:15px;">
+                            <!-- Card -->
+                            <div class="card border shadow p-2 rounded-lg sk-fade">
+                                <!-- Image -->
+                                <div class="card-zoom position-relative">
+                                    <div class="badge-float sk-fade-top top-0 right-0 mt-4 me-4">
+
+                                    </div>
+
+                                    <a href="{{i.get_absolute_url}}" class="card-img sk-thumbnail img-ratio-9 d-block">
+                                        <img class="rounded shadow-light-lg" src="{{i.author.author_profile.url}}" alt="...">
+                                    </a>
+
+                                    {% comment %} <span class="badge sk-fade-bottom badge-lg badge-primary badge-pill badge-float bottom-0 left-0 mb-4 ms-4">
+                                        <span class="text-white text-uppercase fw-bold font-size-xs">Discount {{i.discount}} %</span>
+                                    </span> {% endcomment %}
+                                </div>
+
+                                <!-- Footer -->
+                                <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
+                                    <a href="{{i.get_absolute_url}}" class="d-block">
+                                        <div class="avatar avatar-xl badge-float position-absolute top-0 right-0 mt-n6 me-5 rounded-circle shadow border border-white border-w-lg">
+                                            <img src="{{i.author.author_profile.url}}" alt="..." class="avatar-img rounded-circle">
+                                        </div>
+                                    </a>
+
+                                    <!-- Preheading -->
+                                  <div class="position-relative">
+                                    <a href="{{ i.get_absolute_url }}" class="d-block stretched-link"><h4  style="color:#437FC7;">{{i.author.name}}</h4></a>
+                                       <a href="{{ i.get_absolute_url }}"><span class="mb-1 d-inline-block text-dark-800">{{ i.subject.title }}</span></a>
+
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="font-size-sm">{{i.author.about_author|slice:"0:100"}}</div>
+                                                    </div>
+                                                     <div class="col-auto px-2 text-right">
+
+                                    </div>
+                                    <div>
+                                    </div>
+                                        <div class="d-lg-flex align-items-end flex-wrap mb-n1">
+                                            <div class="star-rating mb-2 mb-lg-0 me-lg-3">
+                                                <div class="rating" style="width:50%;"></div>
+                                            </div>
+
+                                            <div class="font-size-sm">
+                                                <span>5.45 (5.8k+ reviews)</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mx-n2 align-items-end">
+                                            <div class="col px-2">
+
+                                            </div>
+                                         <div class="col-auto px-2 text-right">
+                                             {% if i.price == 0 %}
+                                         <div class="col-auto px-2 text-right">
+                                              {% comment %} <del class="font-size-sm">₹ {{i.price}}</del> {% endcomment %}
+                                             <ins class="h4 mb-0 d-block mb-lg-n1"><a href="#" class="badge badge-primary">free</a></ins>
+                                           </div>
+
+
+                                        {% else %}
+                                      <div class="col-auto px-2 text-right">
+                                              {% comment %} <del class="font-size-sm">AED{{i.price}}</del> {% endcomment %}
+                                             <ins class="h4 mb-0 d-block mb-lg-n1">$ {{i.price}}/hour</ins>
+                                           </div>
+                                           {% endif %}
+                                    </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                           {% else %}
+
+                          {% endif %}
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+            {% endfor %}
+
+            </div>
+        </div>
+    </section>
+<div class="container-fluid mt-5 mb-2">
+    <h1 class="text-center mb-5" style="color:#437FC7;">Finding the Perfect Tutor is Easy</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-4 mb-3">
+    <div class="animation-item">
+        <lottie-player
+          src="{% static 'assets/img/illustrations/animation1.json' %}"
+          background="transparent"
+          speed="2"
+          style="width: 80%; height: 80%"
+          loop
+          autoplay
+        ></lottie-player>
+        <a href="{% url 'tutors_all' %}" class="text-none text-center">Choose your tutor</a>
+      </div>
+      </div>
+      <div class="col-md-4 mb-3">
+      <div class="animation-item">
+        <lottie-player
+          src="{% static 'assets/img/illustrations/animation2.json' %}"
+          background="transparent"
+          speed="2"
+          style="width: 80%; height: 80%"
+          loop
+          autoplay
+        ></lottie-player>
+        <a href="#" class="text-none text-center">Share your goals</a>
+      </div>
+      </div>
+      <div class="col-md-4 mb-3">
+      <div class="animation-item">
+        <lottie-player
+          src="{% static 'assets/img/illustrations/animation3.json' %}"
+          background="transparent"
+          speed="2"
+          style="width: 80%; height: 80%;"
+          loop
+          autoplay
+        ></lottie-player>
+        <a href="#" class="text-center">Book your lesson</a>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="white-space"></div>
+  <div class="container-fluid mb-5">
+    <h1 class="text-center" style="color:#437FC7;">Tutors From Top Universities</h1>
+    </div>
+    <div class="logos">
+      <div class="logos-slide">
+        <img src="{% static 'assets/img/university6.png' %}" />
+        <img src="{% static 'assets/img/university1.png' %}" />
+        <img src="{% static 'assets/img/university7.png' %}" />
+        <img src="{% static 'assets/img/university3.png' %}" />
+        <img src="{% static 'assets/img/university8.png' %}" />
+        <img src="{% static 'assets/img/university2.png' %}" />
+        <img src="{% static 'assets/img/university10.png' %}" />
+        <img src="{% static 'assets/img/university9.png' %}" />
+        <img src="{% static 'assets/img/university4.png' %}" />
+        <img src="{% static 'assets/img/university5.png' %}" />
+      </div>
+      <div class="logos-slide">
+        <img src="{% static 'assets/img/university6.png' %}" />
+        <img src="{% static 'assets/img/university1.png' %}" />
+        <img src="{% static 'assets/img/university7.png' %}" />
+        <img src="{% static 'assets/img/university3.png' %}" />
+        <img src="{% static 'assets/img/university8.png' %}" />
+        <img src="{% static 'assets/img/university2.png' %}" />
+        <img src="{% static 'assets/img/university10.png' %}" />
+        <img src="{% static 'assets/img/university9.png' %}" />
+        <img src="{% static 'assets/img/university4.png' %}" />
+        <img src="{% static 'assets/img/university5.png' %}" />
+      </div>
+    </div>
+<!-- FEATURES GENERAL
+    ================================================== -->
+ <!--<div class="container-fluid mt-5">-->
+ <!--     <div class="row justify-content-center">-->
+ <!--     <div class="col-md-6">-->
+ <!--     <div class="our-mission">-->
+ <!--     <h1>Learn at your own pace</h1>-->
+ <!--     </div>-->
+ <!--     </div>-->
+ <!--     <div class="col-md-6">-->
+ <!--      <div class="our-mission-2">-->
+ <!--     <span>Discover the freedom of learning at your own pace with our tutoring website. Our personalized and flexible approach empowers you to set your own learning rhythm, allowing you to delve into subjects at a comfortable speed that suits your individual needs.</span>-->
+ <!--     </div>-->
+ <!--     </div>-->
+ <!--     </div>-->
+ <!--     </div>-->
+
+ <!--     <div class="container-fluid mb-5">-->
+ <!--     <div class="row justify-content-center">-->
+ <!--           <div class="col-md-6 communitytextmobile mb-3">-->
+ <!--      <div class="our-mission">-->
+ <!--      <h1 class="text-center">Community of opportunities</h1>-->
+ <!--     </div>-->
+ <!--     </div>-->
+ <!--     <div class="col-md-6">-->
+ <!--     <div class="our-mission-2">-->
+ <!--       <span>Embark on a journey within our vibrant 'Communities of Opportunities.' Our platform is not just a space for learning; it's a dynamic hub where knowledge meets collaboration, creating an environment that nurtures growth and success. Connect with like-minded individuals, mentors, and experts who share your passions and aspirations.</span>-->
+ <!--     </div>-->
+ <!--     </div>-->
+ <!--     <div class="col-md-6 communitytextmobile2">-->
+ <!--      <div class="our-mission">-->
+ <!--      <h1 class="text-center">Community of opportunities</h1>-->
+ <!--     </div>-->
+ <!--     </div>-->
+ <!--     </div>-->
+ <!--     </div>-->
+
+<!------------------------------ testimonial------------------->
+{% comment %} <section class="home-testimonial mb-5">
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center testimonial-pos">
+            <div class="col-md-12 pt-4 d-flex justify-content-center">
+                <h3 class="text-light">Our Students Reviews</h3>
+            </div>
+            <div class="col-md-12 d-flex justify-content-center">
+                <h2>Explore the Students Experience</h2>
+            </div>
+        </div>
+        <section class="home-testimonial-bottom">
+            <div class="container testimonial-inner">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-4 style-3">
+                        <div class="tour-item ">
+                            <div class="tour-desc bg-white">
+                                <div class="tour-text color-grey-3 text-center">&ldquo;{{ review.reviewcontent }}&rdquo;</div>
+                                <div class="d-flex justify-content-center pt-2 pb-2"><img class="tm-people" src="https://images.pexels.com/photos/6625914/pexels-photo-6625914.jpeg" alt=""></div>
+                                <div class="link-name d-flex justify-content-center">{{ i.studentname }}</div>
+                                <div class="link-position d-flex justify-content-center">Student</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 style-3">
+                        <div class="tour-item ">
+                            <div class="tour-desc bg-white">
+                                <div class="tour-text color-grey-3 text-center">&ldquo;At this School, our mission is to balance a rigorous comprehensive college preparatory curriculum with healthy social and emotional development.&rdquo;</div>
+                                <div class="d-flex justify-content-center pt-2 pb-2"><img class="tm-people" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""></div>
+                                <div class="link-name d-flex justify-content-center">Balbir Kaur</div>
+                                <div class="link-position d-flex justify-content-center">Student</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 style-3">
+                        <div class="tour-item ">
+                            <div class="tour-desc bg-white">
+                                <div class="tour-text color-grey-3 text-center">&ldquo;At this School, our mission is to balance a rigorous comprehensive college preparatory curriculum with healthy social and emotional development.&rdquo;</div>
+                                <div class="d-flex justify-content-center pt-2 pb-2"><img class="tm-people" src="https://images.pexels.com/photos/4946604/pexels-photo-4946604.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""></div>
+                                <div class="link-name d-flex justify-content-center">Balbir Kaur</div>
+                                <div class="link-position d-flex justify-content-center">Student</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+</section> {% endcomment %}
+<!---------------------------------->
+<section class="home-testimonial mb-5">
+  <div class="mt-5 mb-5" style="">
+    <h2 class="text-center" style="color: #437FC7;">Explore Our Students Experience</h2>
+  </div>
+
+   <div class="wrapper">
+    {% for i in review %}
+   <div class="item">
+   <p>&ldquo;{{i.reviewcontent}}&rdquo;</p>
+   <div class="student-image">
+    <img src="https://www.capture.se/Portals/0/Users/156/84/73884/profile.jpg?ver=6oySpRVYrzGFIctKZ6pqcw%3D%3D" alt="">
+  </div>
+  <span>{{i.studentname}}</span>
+  </div>
+  {% endfor %}
+
+
+
+
+</section>
+
+<!--------------------------------------------------->
+ <div class="container mt-5 mb-3">
+                <h2 class="text-center"  style="color:#437FC7;">Tutors Reviews</h2>
+                <p class="text-center"  style="color:#437FC7;">Our students love us! Read what they have to say below. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae.</p>
+            </div>
+            <div class="tutor-reviews">
+              <div class="tutor-review-card">
+                    <div class="box">
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                    </div>
+                    <div class="author"><img class="rounded-circle" src="{% static 'assets/img/photos/photo-2.jpg' %}">
+                        <h5 class="name">Ben Johnson</h5>
+                        <p class="title">Physics Tutor</p>
+                    </div>
+                  </div>
+                  <div class="tutor-review-card">
+                    <div class="box">
+                        <p class="description">Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, et interdum justo suscipit id.</p>
+                    </div>
+                    <div class="author"><img class="rounded-circle" src="{% static 'assets/img/photos/photo-1.jpg' %}">
+                        <h5 class="name">Carl Kent</h5>
+                        <p class="title">Maths Tutor</p>
+                    </div>
+                    </div>
+                    <div class="tutor-review-card">
+                    <div class="box">
+                        <p class="description">Aliquam varius finibus est, et interdum justo suscipit. Vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu.</p>
+                    </div>
+                    <div class="author"><img class="rounded-circle" src="{% static 'assets/img/photos/photo-2.jpg' %}">
+                        <h5 class="name">Emily Clark</h5>
+                        <p class="title">English Tutor</p>
+                    </div>
+                    </div>
+                  </div>
+<!----------------------------------testimonial ending----------------------->
+
+
+<!-------------------------student-review--------------->
+<div class="py-5 pt-md-11 bg-white">
+  <div class="container">
+    <div class="row w-xl-96 mx-xl-auto text-center">
+      <div class="col-md-4 mb-6 mb-md-0">
+        <div class="h1">
+          <span
+            data-toggle="countup"
+            data-from="0"
+            data-to="3000"
+            data-aos
+            data-aos-id="countup:in"
+            style="color:#437FC7;"
+          ></span>
+          <span class="" style="color:#437FC7;">+</span>
+        </div>
+        <p class="font-size-lg fw-medium mb-0">Total Students</p>
+      </div>
+
+      <div class="col-md-4 mb-6 mb-md-0">
+        <div class="h1">
+          <span
+            data-toggle="countup"
+            data-from="0"
+            data-to="53"
+            data-aos
+            data-aos-id="countup:in"
+            style="color:#437FC7;"
+          ></span>
+          <span class="" style="color:#437FC7;">+</span>
+        </div>
+        <p class="font-size-lg fw-medium mb-0">Skilled Tutors</p>
+      </div>
+
+      <div class="col-md-4 mb-6 mb-md-0">
+        <div class="h1">
+          <span
+            data-toggle="countup"
+            data-from="0"
+            data-to="2000"
+            data-aos=""
+            data-aos-id="countup:in"
+            style="color:#437FC7;"
+          ></span
+          ><span class="" style="color:#437FC7;">+</span>
+        </div>
+        <p class="font-size-lg fw-medium mb-0">Online Courses</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- NEWSLETTER & SOCIAL
+    ================================================== -->
+<section class="pt-5 pt-md-11 pb-md-12 bg-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mb-10 mb-md-0">
+        <h3 class="text-center mb-5">Our Latest Tweets</h3>
+        <div
+          class="text-center mx-xl-10 text-capitalize"
+          data-flickity='{"pageDots": true, "prevNextButtons": false, "cellAlign": "left", "wrapAround": true, "imagesLoaded": true}'
+        >
+          <div class="col-12 mb-4 px-2">
+            <div class="mb-3 h2">
+              <i class="fa-brands fa-x-twitter"></i>
+            </div>
+            <a href="#" class="">@TutorlyHub</a>
+            <p class="mb-2">
+              Getting the necessary clarity about the current state to help you
+              improve your game.
+            </p>
+            <span class="text-primary font-size-sm">06 April 2024</span>
+          </div>
+
+          <div class="col-12 mb-4 px-2">
+            <div class="mb-3 h2 ">
+              <i class="fa-brands fa-x-twitter"></i>
+            </div>
+            <a href="#" class="">@TutorlyHub</a>
+            <p class="mb-2">
+              Getting the necessary clarity about the current state to help you
+              improve your game.
+            </p>
+            <span class="text-primary font-size-sm">06 April 2024</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <h3 class="text-center mb-4" style="color:#437FC7;">Subscribe our newsletter</h3>
+        <p class="mb-5 mx-xl-10 text-center">
+          Your download should start automatically, if not Click here. Should I
+          give up, huh?.
+        </p>
+        <div class="mx-xl-8">
+          <form>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control rounded-left-lg placeholder-1"
+                placeholder="Enter your email"
+                aria-label="Enter your email"
+                aria-describedby="button-addon2"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-blue px-5 rounded-right-lg"
+                  type="button"
+                  id="button-addon2"
+                  style="background-color:#437FC7;"
+                >
+                  Subscribe
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER
+    ================================================== -->
+   <div class="container-fluid my-5 "  style="background-color:white">
+
+  <!-- Footer -->
+  <footer
+          class="text-center text-lg-start text-white"
+          style="background-color:#437FC7;"
+          >
+    <!-- Section: Social media -->
+    <section
+             class="d-flex justify-content-between p-2"
+             style="background-color:#437FC7;"
+             >
+      <!-- Left -->
+      <div class="me-5">
+        <span>Get connected with us on social networks:</span>
+      </div>
+      <!-- Left -->
+
+      <!-- Right -->
+      <div>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-x-twitter"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-2">
+        <!-- Grid row -->
+        <div class="row mt-2">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-2">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold text-light" >TutorlyHub</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: white; height: 2px"
+                />
+            <p>
+              Here you can use rows and columns to organize your footer
+              content. Lorem ipsum dolor sit amet, consectetur adipisicing
+              elit.
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-2">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold text-light">Courses</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: white; height: 2px"
+                />
+            <p>
+              <a href="#!" class="text-white">Languages</a>
+            </p>
+            <p>
+              <a href="#!" class="text-white">Science</a>
+            </p>
+            <p>
+              <a href="#!" class="text-white">Social Science</a>
+            </p>
+            <p>
+              <a href="#!" class="text-white">Literature</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-2">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold text-light">learn with us</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: white; height: 2px"
+                />
+            <p>
+              <a href="#!" class="text-white">Your Account</a>
+            </p>
+            <p>
+              <a href="#!" class="text-white">Tutor Rates</a>
+            </p>
+            <p>
+              <a href="#!" class="text-white">Help</a>
+            </p>
+            <p>
+              <a href="{% url 'about_us' %}" class="text-white">About</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-2">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold text-light">Contact</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: white; height: 2px"
+                />
+            <p><i class="fas fa-home mr-3" style="margin-right:8px;"></i>U A E, NY 10012, US</p>
+            <p><i class="fas fa-envelope mr-3" style="margin-right:8px;"></i>TutorlyHub.com</p>
+            <p><i class="fas fa-phone mr-3" style="margin-right:8px;"></i>+ 01 234 567 88</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div
+         class="text-center p-1"
+         style="background-color:#437FC7;"
+         >
+      © 2024 Copyright:
+      <a class="text-white" href=""
+         >TutorlyHub.com |</a
+        >
+        <span><a href="{% url 'privacy' %}" class="text-light">PrivacyPolicy</a> | <a href="{% url 'terms' %}" class="text-light">Terms and Conditions</a></span>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+
+</div>
+<script>
+    $('.select2').select2();
+</script>
+ <!-- JAVASCRIPT
+    ================================================== -->
+    <!-- Libs JS -->
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/libs/%40fancyapps/fancybox/dist/jquery.fancybox.min.js' %}"></script>
+    <script src="{% static 'assets/libs/aos/dist/aos.js' %}"></script>
+    <script src="{% static 'assets/libs/choices.js/public/assets/scripts/choices.min.js' %}"></script>
+    <script src="{% static 'assets/libs/countup.js/dist/countUp.min.js' %}"></script>
+    <script src="{% static 'assets/libs/dropzone/dist/min/dropzone.min.js' %}"></script>
+    <script src="{% static 'assets/libs/flickity/dist/flickity.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/libs/flickity-fade/flickity-fade.js' %}"></script>
+    <script src="{% static 'assets/libs/highlightjs/highlight.pack.min.js' %}"></script>
+    <script src="{% static 'assets/libs/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/libs/isotope-layout/dist/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/libs/jarallax/dist/jarallax.min.js' %}"></script>
+    <script src="{% static 'assets/libs/jarallax/dist/jarallax-video.min.js' %}"></script>
+    <script src="{% static 'assets/libs/jarallax/dist/jarallax-element.min.js' %}"></script>
+    <script src="{% static 'assets/libs/parallax-js/dist/parallax.min.js' %}"></script>
+    <script src="{% static 'assets/libs/quill/dist/quill.min.js' %}"></script>
+    <script src="{% static 'assets/libs/smooth-scroll/dist/smooth-scroll.min.js' %}"></script>
+    <script src="{% static 'assets/libs/typed.js/lib/typed.min.js' %}"></script>
+
+    <!-- Map -->
+    <script src='../../../api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+
+    <!-- Theme JS -->
+    <script src="{% static 'assets/js/theme.min.js' %}"></script>
+
+
+</body>
+
+
+</html>

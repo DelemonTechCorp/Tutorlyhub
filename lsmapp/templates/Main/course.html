@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
+</head>
+<style>
+    #form-id{
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        height: auto;
+        width: 50%;
+        flex-direction: column;
+    }
+    .form-inputs{
+        width: 350px;
+        padding-left: 10px;
+        margin-bottom: 10px;
+        border:2px solid rgb(235, 235, 235);
+        outline: none;
+        background-color: rgb(255, 255, 255);
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 14px;
+        height: 50px;
+    }
+    #form-id button{
+        background-color: #437FC7;
+        border: hidden;
+        outline: none;
+        color: white;
+        width: 350px;
+        height: 40px;
+        font-size: 14px;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+</style>
+<body>
+  <div class="container mt-5">
+    <h3 class="text-center">FORM</h3>
+    <div class="row">
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-6">
+    <form id="form-id" method="post" action="/insertcourse">
+        {% csrf_token %}
+        <div>
+        <label for="">Subject</label>
+        <select name="subject" id="subject" class="form-inputs" required>
+            <option value="" selected>Select Your Subject</option>
+            {% for i in val %}
+            <option value="{{i.id}}">{{i.title}}</option>
+            {% endfor %}
+          </select>
+    </div>
+    <div>
+        <label for="">Category</label>
+        <select name="category" id="category" class="form-inputs" required>
+            <option value="" selected>Select Category</option>
+            {% for i in var %}
+            <option value="{{i.id}}">{{i.name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="">Description</label>
+        <textarea placeholder="Enter the Description about the course" name="des" class="form-inputs"></textarea>
+    </div>
+    <div>
+        <label for="">Price</label>
+        <input type="text" placeholder="Enter your Price per hour" name="price" class="form-inputs">
+    </div>
+    <div>
+        <label for="">Discount</label>
+        <input type="text" placeholder="Enter your Discount" name="discount" class="form-inputs">
+    </div>
+    <div>
+        <label for="">Status</label>
+        <select name="status" id="status" class="form-inputs">
+            <option value="" selected>Select Your Status</option>
+            <option value="Publish" class="form-inputs">Publish</option>
+            <option value="Draft" class="form-inputs">Draft</option>
+        </select>
+    </div>
+        <button type="submit">Submit</button>
+
+
+    </form>
+</div>
+</div>
+ </div>   
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"  integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"  crossorigin="anonymous" ></script>
+</body>
+</html>

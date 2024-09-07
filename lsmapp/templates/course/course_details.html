@@ -1,0 +1,452 @@
+{% extends 'base.html'%}
+{% block title %}{{course.title}}{% endblock %}
+{% load course_tags %}
+{% block content %}
+{% load static %}
+
+    <div class="container mt-5">
+        <div class="row mb-8">
+            <div class="col-lg-8 mb-6 mb-lg-0 position-relative">
+                <h1 class="me-7 me-xl-14 " style="color:#437FC7;">
+                    {{course.author.name}}
+                </h1>
+                <p class="me-xl-13 mb-5 text-dark" >{{course.subject.title}}</p>
+                <!-- COURSE META
+                ================================================== -->
+                <div class="d-md-flex align-items-center mb-5">
+                    <div class="border rounded-circle d-inline-block mb-4 mb-md-0 me-md-6 me-lg-4 me-xl-6">
+                        <div class="p-2">
+                            <img src="{{course.author.author_profile.url}}" style="object-fit:cover;" alt="..." class="rounded-circle" width="150" height="150">
+                        </div>
+                    </div>
+
+
+                    <div class="mb-4 mb-md-0 me-md-6 me-lg-4 me-xl-6">
+                        <h6 class="mb-0">Review</h6>
+                        <div class="d-lg-flex align-items-center">
+                            <div class="star-rating mb-2 mb-lg-0">
+                                <div class="rating" style="width:100%;"></div>
+                            </div>
+
+                            <div class="font-size-sm ms-lg-3">
+                                <span>9.45 (9.8k+ reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% comment %} <div class="mb-4 mb-md-0 me-md-6 me-lg-4 me-xl-6">
+                        <h6 class="mb-0">students</h6>
+                        <div class="d-lg-flex align-items-center">
+                            <div class="star-rating mb-2 mb-lg-0">
+                                <div class="rating" style="width:100%;"></div>
+                            </div>
+
+                            <div class="font-size-sm ms-lg-3">
+                                <span>2000</span>
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+
+
+                <!-- COURSE INFO TAB
+                ================================================== -->
+                <div id="Overview" class="mb-8">
+                    <ul class="nav course-tab-v1 border-bottom h4 mb-8">
+
+                    </ul>
+
+                    <h3 class="" style="color:#437FC7;">About Tutor</h3>
+                    <p class="mb-6 line-height-md">{{course.author.about_author|slice:"0:3000"}}</p>
+
+                    <p class="collapse mb-6 line-height-md" id="readcollapseExample">{{course.author.about_author|slice:"0:3000"}}</p>
+                    <a class=" read-more h6 d-inline-block mb-8" data-bs-toggle="collapse" href="#readcollapseExample" style="color:#437FC7;" role="button" aria-expanded="false" aria-controls="readcollapseExample">
+                        <span class="d-inline-flex align-items-center more" >
+                            Read More
+                            <span class="d-flex align-items-center justify-content-center rounded-circle ms-2 p-2 w-26p" style="background-color:#437FC7;">
+                                <i class="fas fa-plus font-size-10 text-white"></i>
+                            </span>
+                        </span>
+                        <span class="d-inline-flex align-items-center less">
+                            Read Less
+                            <span class="d-flex align-items-center justify-content-center rounded-circle ms-2 p-2 w-26p" style="background-color:#437FC7;">
+                                <i class="fas fa-minus font-size-10 text-white"></i>
+                            </span>
+                        </span>
+                    </a>
+                    <h3 class="" style="color:#437FC7;">About Course</h3>
+                    <p class="mb-6 line-height-md">{{course.description|slice:"0:3000"}}</p>
+
+                    <p class="collapse mb-6 line-height-md" id="readcollapseExample">{{course.description|slice:"0:3000"}}</p>
+                    <a class=" read-more h6 d-inline-block mb-8" data-bs-toggle="collapse" href="#readcollapseExample" style="color:#437FC7;" role="button" aria-expanded="false" aria-controls="readcollapseExample">
+                        <span class="d-inline-flex align-items-center more" >
+                            Read More
+                            <span class="d-flex align-items-center justify-content-center rounded-circle ms-2 p-2 w-26p" style="background-color:#437FC7;">
+                                <i class="fas fa-plus font-size-10 text-white"></i>
+                            </span>
+                        </span>
+                        <span class="d-inline-flex align-items-center less">
+                            Read Less
+                            <span class="d-flex align-items-center justify-content-center rounded-circle ms-2 p-2 w-26p" style="background-color:#437FC7;">
+                                <i class="fas fa-minus font-size-10 text-white"></i>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+              <div class="col-md-12">
+    <video width="100%" height="240" controls loop autoplay muted>
+        <source src="{{ course.author.author_video.url }}" type="video/mp4">
+    </video>
+</div>
+
+
+
+
+
+                <div id="Curriculum" class="mb-8">
+
+                    <div id="accordionCurriculum">
+
+                        </div>
+                    </div>
+
+                <div id="Instructor" class="mb-8">
+
+
+
+                    <h3 class="mb-6" style="color:#437FC7;">Student feedback</h3>
+                  <div class="row align-items-center mb-8">
+                        <div class="col-md-auto mb-4 mb-md-0">
+                            <div class="border rounded shadow d-flex align-items-center justify-content-center px-5 py-4">
+                                <div class="m-2 text-center">
+                                    <h3 class=" mb-0 mb-n1">4.93</h3>
+                                    <h5 class="mb-0">Course rating</h5>
+                                    <div class="star-rating">
+                                        <div class="rating" style="width:100%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md">
+                            <div class="d-md-flex align-items-center my-3 my-md-2">
+                                <div class="bg-gray-200 position-relative rounded-pill flex-grow-1 me-md-5 mb-2 mb-md-0 mw-md-180p" style="height: 8px;">
+                                    <div class="bg-blue rounded-pill position-absolute top-0 left-0 bottom-0" style="width: 90%;"></div>
+                                </div>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="star-rating star-rating-md secondary me-4">
+                                        <div class="rating" style="width:90%;"></div>
+                                    </div>
+                                    <span>4132</span>
+                                </div>
+                            </div>
+
+                            <div class="d-md-flex align-items-center my-3 my-md-2">
+                                <div class="bg-gray-200 position-relative rounded-pill flex-grow-1 me-md-5 mb-2 mb-md-0 mw-md-180p" style="height: 8px;">
+                                    <div class="bg-blue rounded-pill position-absolute top-0 left-0 bottom-0" style="width: 60%;"></div>
+                                </div>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="star-rating star-rating-md me-4">
+                                        <div class="rating" style="width:60%;"></div>
+                                    </div>
+                                    <span>150</span>
+                                </div>
+                            </div>
+
+                            <div class="d-md-flex align-items-center my-3 my-md-2">
+                                <div class="bg-gray-200 position-relative rounded-pill flex-grow-1 me-md-5 mb-2 mb-md-0 mw-md-180p" style="height: 8px;">
+                                    <div class="bg-blue rounded-pill position-absolute top-0 left-0 bottom-0" style="width: 50%;"></div>
+                                </div>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="star-rating star-rating-md secondary me-4">
+                                        <div class="rating" style="width:50%;"></div>
+                                    </div>
+                                    <span>50</span>
+                                </div>
+                            </div>
+
+                            <div class="d-md-flex align-items-center my-3 my-md-2">
+                                <div class="bg-gray-200 position-relative rounded-pill flex-grow-1 me-md-5 mb-2 mb-md-0 mw-md-180p" style="height: 8px;">
+                                    <div class="bg-blue rounded-pill position-absolute top-0 left-0 bottom-0" style="width: 35%;"></div>
+                                </div>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="star-rating star-rating-md secondary me-4">
+                                        <div class="rating" style="width:35%;"></div>
+                                    </div>
+                                    <span>32</span>
+                                </div>
+                            </div>
+
+                            <div class="d-md-flex align-items-center my-3 my-md-2">
+                                <div class="bg-gray-200 position-relative rounded-pill flex-grow-1 me-md-5 mb-2 mb-md-0 mw-md-180p" style="height: 8px;">
+                                    <div class="bg-blue rounded-pill position-absolute top-0 left-0 bottom-0" style="width: 15%;"></div>
+                                </div>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="star-rating star-rating-md secondary me-4">
+                                        <div class="rating" style="width:15%;"></div>
+                                    </div>
+                                    <span>1</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                   <ul class="list-unstyled pt-2 col-md-10">
+                        <li class="media d-flex">
+                            <div class="avatar avatar-xxl me-3 me-md-6 flex-shrink-0">
+                                <img src="{% static 'assets/img/avatars/avatar-1.jpg' %}" alt="..." class="avatar-img rounded-circle">
+                            </div>
+                            <div class="media-body flex-grow-1">
+                                <div class="d-md-flex align-items-center mb-5">
+                                    <div class="me-auto mb-4 mb-md-0">
+                                        <h5 class="mb-0">Oscar Cafeo</h5>
+                                        <p class="font-size-sm font-italic">Beautiful courses</p>
+                                    </div>
+                                    <div class="star-rating">
+                                        <div class="rating" style="width:100%;"></div>
+                                    </div>
+                                </div>
+                                <p class="mb-6 line-height-sm">This course was well organized and covered a lot more details than any other Figma courses. I really enjoy it. One suggestion is that it can be much better if we could complete the prototype together. Since we created 24 frames, I really want to test it on Figma mirror to see all the connections. Could you please let me take a look at the complete prototype?</p>
+                            </div>
+                        </li>
+                        <li class="media d-flex">
+                            <div class="avatar avatar-xxl me-3 me-md-6 flex-shrink-0">
+                                <img src="{% static 'assets/img/avatars/avatar-2.jpg' %}" alt="..." class="avatar-img rounded-circle">
+                            </div>
+                            <div class="media-body flex-grow-1">
+                                <div class="d-md-flex align-items-center mb-5">
+                                    <div class="me-auto mb-4 mb-md-0">
+                                        <h5 class="mb-0">Alex Morgan</h5>
+                                        <p class="font-size-sm font-italic">Beautiful courses</p>
+                                    </div>
+                                    <div class="star-rating">
+                                        <div class="rating" style="width:100%;"></div>
+                                    </div>
+                                </div>
+                                <p class="mb-6 line-height-sm">This course was well organized and covered a lot more details than any other Figma courses. I really enjoy it. One suggestion is that it can be much better if we could complete the prototype together. Since we created 24 frames, I really want to test it on Figma mirror to see all the connections. Could you please let me take a look at the complete prototype?</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <!-- SIDEBAR FILTER
+                ================================================== -->
+                <div class="d-block rounded border p-2 shadow mb-6">
+                    <a href="/{{course.author.author_profile}}" class="d-block sk-thumbnail rounded mb-1" >
+
+                        <img class="rounded shadow-light-lg" src="{{course.author.author_profile.url}}" alt="...">
+                    </a>
+
+                    <div class="pt-5 pb-4 px-5 px-lg-3 px-xl-5">
+                    {% if course.price == 0 %}
+                    <div class="d-flex align-items-center mb-2">
+                            <ins class="h2 mb-0">Free</ins>
+                            {% comment %} <del class="ms-3">{{i.price}}</del> {% endcomment %}
+                            <div class="badge badge-lg badge-purple text-white ms-auto fw-normal">{{course.discount}}</div>
+                        </div>
+
+
+
+                    {% else %}
+                        <div class="d-flex align-items-center mb-2">
+                            <ins class="h2 mb-0">$ {{course.price}} per hour</ins>
+                            {% comment %} <del class="ms-3">$ {{i.price}} per hour</del> {% endcomment %}
+                            {% comment %} <div class="badge badge-lg badge-purple text-white ms-auto fw-normal">{{i.discount}}% Off </div> {% endcomment %}
+                        </div>
+                        {% endif %}
+
+                        <div class="d-flex align-items-center mb-6" style="color:#437FC7;">
+                            <!-- Icon -->
+                            <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.99974 3.0083C5.79444 3.0083 2.37305 6.42973 2.37305 10.635C2.37305 14.8405 5.79448 18.2619 9.99974 18.2619C14.2053 18.2619 17.6264 14.8405 17.6264 10.635C17.6264 6.42973 14.205 3.0083 9.99974 3.0083ZM9.99974 16.8797C6.55666 16.8797 3.7555 14.0783 3.7555 10.6353C3.7555 7.19219 6.55662 4.39103 9.99974 4.39103C13.4428 4.39103 16.244 7.19219 16.244 10.6353C16.244 14.0785 13.4428 16.8797 9.99974 16.8797Z" fill="currentColor"/>
+                                <path d="M12.1193 10.4048H10.2761V7.73202C10.2761 7.35022 9.9666 7.04077 9.5848 7.04077C9.20301 7.04077 8.89355 7.35022 8.89355 7.73202V11.0961C8.89355 11.4779 9.20301 11.7873 9.5848 11.7873H12.1194C12.5012 11.7873 12.8106 11.4779 12.8106 11.0961C12.8106 10.7143 12.5011 10.4048 12.1193 10.4048Z" fill="currentColor"/>
+                                <path d="M6.08489 15.5823C5.80102 15.3267 5.36391 15.35 5.10864 15.6336L3.0349 17.9378C2.77935 18.2214 2.80263 18.6585 3.08627 18.9138C3.2183 19.033 3.38372 19.0915 3.54849 19.0915C3.73767 19.0915 3.92614 19.0143 4.06255 18.8625L6.13629 16.5583C6.3918 16.2746 6.36852 15.8375 6.08489 15.5823Z" fill="currentColor"/>
+                                <path d="M16.9661 17.9381L14.8924 15.634C14.6375 15.3501 14.2002 15.327 13.9163 15.5826C13.6325 15.8379 13.6097 16.275 13.865 16.5586L15.9387 18.8628C16.0749 19.0144 16.2633 19.0916 16.4525 19.0916C16.6171 19.0916 16.7825 19.033 16.9147 18.9141C17.1986 18.6588 17.2214 18.2217 16.9661 17.9381Z" fill="currentColor"/>
+                                <path d="M5.96733 1.91597C4.59382 0.571053 2.3798 0.573123 1.03211 1.92105C0.361569 2.59132 -0.00479631 3.47819 4.74212e-05 4.41826C0.00512553 5.34705 0.373327 6.21665 1.03715 6.86689C1.17172 6.99845 1.34614 7.06411 1.52078 7.06411C1.69774 7.06411 1.87469 6.99638 2.00949 6.86181L5.9726 2.8987C6.10303 2.76808 6.17584 2.59085 6.17491 2.40632C6.17401 2.22171 6.09932 2.04523 5.96733 1.91597ZM1.5966 5.31939C1.45813 5.04037 1.38414 4.73162 1.38254 4.41088C1.37953 3.84315 1.60211 3.30581 2.00949 2.89843C2.41594 2.49222 2.95328 2.28921 3.49359 2.28921C3.80949 2.28921 4.12655 2.35855 4.4187 2.49726L1.5966 5.31939Z" fill="currentColor"/>
+                                <path d="M18.9673 1.92072C17.6194 0.573026 15.4053 0.570721 14.0318 1.91564C13.9 2.04489 13.8252 2.22142 13.8242 2.40595C13.8233 2.59052 13.8963 2.76794 14.0268 2.89833L17.9899 6.86144C18.1247 6.99648 18.3016 7.06398 18.4786 7.06398C18.6532 7.06398 18.8279 6.99831 18.9622 6.86628C19.6263 6.21628 19.9945 5.34672 19.9993 4.41789C20.0042 3.47809 19.6376 2.59122 18.9673 1.92072ZM18.4028 5.3193L15.5807 2.4972C16.3729 2.12114 17.3459 2.25458 17.9899 2.89856C18.3973 3.30594 18.6199 3.84301 18.6169 4.41102C18.6152 4.73152 18.5413 5.04051 18.4028 5.3193Z" fill="currentColor"/>
+                            </svg>
+
+                            <span class="ms-2">learn better</span>
+                        </div>
+
+                         <a class="btn text-light btn-block mb-6" type="button" style="background-color:#437FC7;" name="button" href="{% url 'form1' %}">Payment</a>
+                        <a class="btn text-light btn-block mb-6" type="button" style="background-color:#6DAFFE;" name="button" href="{% url 'form' %}">Contact</a>
+
+                        <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex align-items-center py-3" style="background-color:#F7F9FB">
+                                <div class="text-secondary d-flex icon-uxs">
+                                    <!-- Icon -->
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.1947 7.06802L14.6315 7.9985C14.2476 7.31186 13.712 6.71921 13.0544 6.25992C12.8525 6.11877 12.6421 5.99365 12.4252 5.88303C13.0586 5.25955 13.452 4.39255 13.452 3.43521C13.452 1.54098 11.9124 -1.90735e-06 10.0197 -1.90735e-06C8.12714 -1.90735e-06 6.58738 1.54098 6.58738 3.43521C6.58738 4.39255 6.98075 5.25955 7.61414 5.88303C7.39731 5.99365 7.1869 6.11877 6.98502 6.25992C6.32752 6.71921 5.79178 7.31186 5.40787 7.9985L2.8447 7.06802C2.33612 6.88339 1.79688 7.26044 1.79688 7.80243V16.5178C1.79688 16.8465 2.00256 17.14 2.31155 17.2522L9.75312 19.9536C9.93073 20.018 10.1227 20.0128 10.2863 19.9536L17.7278 17.2522C18.0368 17.14 18.2425 16.8465 18.2425 16.5178V7.80243C18.2425 7.26135 17.704 6.88309 17.1947 7.06802ZM10.0197 1.5625C11.0507 1.5625 11.8895 2.40265 11.8895 3.43521C11.8895 4.46777 11.0507 5.30792 10.0197 5.30792C8.98866 5.30792 8.14988 4.46777 8.14988 3.43521C8.14988 2.40265 8.98866 1.5625 10.0197 1.5625ZM9.23844 18.1044L3.35938 15.9703V8.91724L9.23844 11.0513V18.1044ZM10.0197 9.67255L6.90644 8.54248C7.58164 7.51892 8.75184 6.87042 10.0197 6.87042C11.2875 6.87042 12.4577 7.51892 13.1329 8.54248L10.0197 9.67255ZM16.68 15.9703L10.8009 18.1044V11.0513L16.68 8.91724V15.9703Z" fill="currentColor"/>
+                                    </svg>
+
+                                </div>
+                                <h6 class="mb-0 ms-3 me-auto">Country</h6>
+                                <span>{{course.author.country.name}}</span>
+                            </li>
+                            <li class="list-group-item d-flex align-items-center py-4" style="background-color:#F7F9FB">
+                            <div class="text-secondary d-flex icon-uxs">
+                                    <!-- Icon -->
+                                    <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.7262 1.94825C13.4059 0.396725 10.401 0.315126 8.00002 1.73839C5.59897 0.315126 2.59406 0.396725 0.273859 1.94825C0.102729 2.06241 -3.54271e-05 2.25456 6.30651e-07 2.46027V14.6553C-0.000323889 14.8826 0.124616 15.0914 0.324917 15.1987C0.525109 15.3058 0.768066 15.294 0.9569 15.168C2.98471 13.8111 5.63063 13.8111 7.65844 15.168C7.66645 15.1735 7.67568 15.1747 7.68368 15.1796C7.69169 15.1846 7.7003 15.1932 7.70953 15.1987C7.73102 15.2079 7.75302 15.2159 7.77538 15.2227C7.79773 15.2329 7.82077 15.2415 7.84428 15.2486C7.87828 15.2564 7.91286 15.2616 7.94766 15.264C7.96551 15.264 7.98213 15.2714 7.99998 15.2714C8.00492 15.2714 8.00982 15.2714 8.01538 15.2714C8.03604 15.2699 8.05655 15.2672 8.07693 15.2634C8.10808 15.2602 8.13895 15.2547 8.16923 15.2467C8.19018 15.2399 8.21074 15.2319 8.23078 15.2227C8.24986 15.2147 8.27016 15.2104 8.28862 15.2006C8.29724 15.1956 8.30402 15.1883 8.31264 15.1827C8.32125 15.1772 8.3311 15.1753 8.33971 15.1698C10.3675 13.8129 13.0134 13.8129 15.0413 15.1698C15.3233 15.3595 15.7057 15.2846 15.8953 15.0026C15.9643 14.9 16.0008 14.779 16 14.6554V2.46027C16 2.25456 15.8973 2.06241 15.7262 1.94825ZM7.38462 13.6036C5.43516 12.6896 3.18022 12.6896 1.23076 13.6036V2.79993C3.12732 1.67313 5.48806 1.67313 7.38462 2.79993V13.6036ZM14.7692 13.6036C12.8198 12.6896 10.5648 12.6896 8.61538 13.6036V2.79993C10.5119 1.67313 12.8727 1.67313 14.7692 2.79993V13.6036Z" fill="currentColor"/>
+                                    </svg>
+
+                                </div>
+                                <h6 class="mb-0 ms-3 me-auto">City</h6>
+                                <span>{{course.author.location.name}}</span>
+                            </li>
+                            <li class="list-group-item d-flex align-items-center py-3" style="background-color:#F7F9FB">
+                                <div class="text-secondary d-flex icon-uxs">
+                                    <!-- Icon -->
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.1947 7.06802L14.6315 7.9985C14.2476 7.31186 13.712 6.71921 13.0544 6.25992C12.8525 6.11877 12.6421 5.99365 12.4252 5.88303C13.0586 5.25955 13.452 4.39255 13.452 3.43521C13.452 1.54098 11.9124 -1.90735e-06 10.0197 -1.90735e-06C8.12714 -1.90735e-06 6.58738 1.54098 6.58738 3.43521C6.58738 4.39255 6.98075 5.25955 7.61414 5.88303C7.39731 5.99365 7.1869 6.11877 6.98502 6.25992C6.32752 6.71921 5.79178 7.31186 5.40787 7.9985L2.8447 7.06802C2.33612 6.88339 1.79688 7.26044 1.79688 7.80243V16.5178C1.79688 16.8465 2.00256 17.14 2.31155 17.2522L9.75312 19.9536C9.93073 20.018 10.1227 20.0128 10.2863 19.9536L17.7278 17.2522C18.0368 17.14 18.2425 16.8465 18.2425 16.5178V7.80243C18.2425 7.26135 17.704 6.88309 17.1947 7.06802ZM10.0197 1.5625C11.0507 1.5625 11.8895 2.40265 11.8895 3.43521C11.8895 4.46777 11.0507 5.30792 10.0197 5.30792C8.98866 5.30792 8.14988 4.46777 8.14988 3.43521C8.14988 2.40265 8.98866 1.5625 10.0197 1.5625ZM9.23844 18.1044L3.35938 15.9703V8.91724L9.23844 11.0513V18.1044ZM10.0197 9.67255L6.90644 8.54248C7.58164 7.51892 8.75184 6.87042 10.0197 6.87042C11.2875 6.87042 12.4577 7.51892 13.1329 8.54248L10.0197 9.67255ZM16.68 15.9703L10.8009 18.1044V11.0513L16.68 8.91724V15.9703Z" fill="currentColor"/>
+                                    </svg>
+
+                                </div>
+                                <h6 class="mb-0 ms-3 me-auto">Gender</h6>
+                                <span>{{course.author.gender.name}}</span>
+                            </li>
+                             <li class="list-group-item d-flex align-items-center py-3" style="background-color:#F7F9FB">
+                                <div class="text-secondary d-flex icon-uxs">
+                                    <!-- Icon -->
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.1947 7.06802L14.6315 7.9985C14.2476 7.31186 13.712 6.71921 13.0544 6.25992C12.8525 6.11877 12.6421 5.99365 12.4252 5.88303C13.0586 5.25955 13.452 4.39255 13.452 3.43521C13.452 1.54098 11.9124 -1.90735e-06 10.0197 -1.90735e-06C8.12714 -1.90735e-06 6.58738 1.54098 6.58738 3.43521C6.58738 4.39255 6.98075 5.25955 7.61414 5.88303C7.39731 5.99365 7.1869 6.11877 6.98502 6.25992C6.32752 6.71921 5.79178 7.31186 5.40787 7.9985L2.8447 7.06802C2.33612 6.88339 1.79688 7.26044 1.79688 7.80243V16.5178C1.79688 16.8465 2.00256 17.14 2.31155 17.2522L9.75312 19.9536C9.93073 20.018 10.1227 20.0128 10.2863 19.9536L17.7278 17.2522C18.0368 17.14 18.2425 16.8465 18.2425 16.5178V7.80243C18.2425 7.26135 17.704 6.88309 17.1947 7.06802ZM10.0197 1.5625C11.0507 1.5625 11.8895 2.40265 11.8895 3.43521C11.8895 4.46777 11.0507 5.30792 10.0197 5.30792C8.98866 5.30792 8.14988 4.46777 8.14988 3.43521C8.14988 2.40265 8.98866 1.5625 10.0197 1.5625ZM9.23844 18.1044L3.35938 15.9703V8.91724L9.23844 11.0513V18.1044ZM10.0197 9.67255L6.90644 8.54248C7.58164 7.51892 8.75184 6.87042 10.0197 6.87042C11.2875 6.87042 12.4577 7.51892 13.1329 8.54248L10.0197 9.67255ZM16.68 15.9703L10.8009 18.1044V11.0513L16.68 8.91724V15.9703Z" fill="currentColor"/>
+                                    </svg>
+
+                                </div>
+                                <h6 class="mb-0 ms-3 me-auto">Avilable</h6>
+                                <span>{{course.author.avilable.name}}</span>
+
+                            </li>
+                             <li class="list-group-item d-flex align-items-center py-3" style="background-color:#F7F9FB">
+                                <div class="text-secondary ">
+                                    <!-- Icon -->
+                                    {% comment %} <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.1947 7.06802L14.6315 7.9985C14.2476 7.31186 13.712 6.71921 13.0544 6.25992C12.8525 6.11877 12.6421 5.99365 12.4252 5.88303C13.0586 5.25955 13.452 4.39255 13.452 3.43521C13.452 1.54098 11.9124 -1.90735e-06 10.0197 -1.90735e-06C8.12714 -1.90735e-06 6.58738 1.54098 6.58738 3.43521C6.58738 4.39255 6.98075 5.25955 7.61414 5.88303C7.39731 5.99365 7.1869 6.11877 6.98502 6.25992C6.32752 6.71921 5.79178 7.31186 5.40787 7.9985L2.8447 7.06802C2.33612 6.88339 1.79688 7.26044 1.79688 7.80243V16.5178C1.79688 16.8465 2.00256 17.14 2.31155 17.2522L9.75312 19.9536C9.93073 20.018 10.1227 20.0128 10.2863 19.9536L17.7278 17.2522C18.0368 17.14 18.2425 16.8465 18.2425 16.5178V7.80243C18.2425 7.26135 17.704 6.88309 17.1947 7.06802ZM10.0197 1.5625C11.0507 1.5625 11.8895 2.40265 11.8895 3.43521C11.8895 4.46777 11.0507 5.30792 10.0197 5.30792C8.98866 5.30792 8.14988 4.46777 8.14988 3.43521C8.14988 2.40265 8.98866 1.5625 10.0197 1.5625ZM9.23844 18.1044L3.35938 15.9703V8.91724L9.23844 11.0513V18.1044ZM10.0197 9.67255L6.90644 8.54248C7.58164 7.51892 8.75184 6.87042 10.0197 6.87042C11.2875 6.87042 12.4577 7.51892 13.1329 8.54248L10.0197 9.67255ZM16.68 15.9703L10.8009 18.1044V11.0513L16.68 8.91724V15.9703Z" fill="currentColor"/>
+                                    </svg> {% endcomment %}
+
+                                </div>
+                                <h6 class="mb-0 ms-3 me-auto"></h6>
+                                <span>Morning</span>
+
+                            </li>
+                             <li class="list-group-item d-flex align-items-center py-3" style="background-color:#F7F9FB">
+                                <div class="text-secondary ">
+                                    <!-- Icon -->
+                                    {% comment %} <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.1947 7.06802L14.6315 7.9985C14.2476 7.31186 13.712 6.71921 13.0544 6.25992C12.8525 6.11877 12.6421 5.99365 12.4252 5.88303C13.0586 5.25955 13.452 4.39255 13.452 3.43521C13.452 1.54098 11.9124 -1.90735e-06 10.0197 -1.90735e-06C8.12714 -1.90735e-06 6.58738 1.54098 6.58738 3.43521C6.58738 4.39255 6.98075 5.25955 7.61414 5.88303C7.39731 5.99365 7.1869 6.11877 6.98502 6.25992C6.32752 6.71921 5.79178 7.31186 5.40787 7.9985L2.8447 7.06802C2.33612 6.88339 1.79688 7.26044 1.79688 7.80243V16.5178C1.79688 16.8465 2.00256 17.14 2.31155 17.2522L9.75312 19.9536C9.93073 20.018 10.1227 20.0128 10.2863 19.9536L17.7278 17.2522C18.0368 17.14 18.2425 16.8465 18.2425 16.5178V7.80243C18.2425 7.26135 17.704 6.88309 17.1947 7.06802ZM10.0197 1.5625C11.0507 1.5625 11.8895 2.40265 11.8895 3.43521C11.8895 4.46777 11.0507 5.30792 10.0197 5.30792C8.98866 5.30792 8.14988 4.46777 8.14988 3.43521C8.14988 2.40265 8.98866 1.5625 10.0197 1.5625ZM9.23844 18.1044L3.35938 15.9703V8.91724L9.23844 11.0513V18.1044ZM10.0197 9.67255L6.90644 8.54248C7.58164 7.51892 8.75184 6.87042 10.0197 6.87042C11.2875 6.87042 12.4577 7.51892 13.1329 8.54248L10.0197 9.67255ZM16.68 15.9703L10.8009 18.1044V11.0513L16.68 8.91724V15.9703Z" fill="currentColor"/>
+                                    </svg> {% endcomment %}
+
+                                </div>
+                                <h6 class="mb-0 ms-3 me-auto"></h6>
+                                <span>Afternoon</span>
+
+                            </li>
+
+
+
+                            {% comment %} <li class="list-group-item d-flex align-items-center py-3" style="background-color:#F7F9FB">
+                                <div class="text-secondary d-flex icon-uxs">
+                                    <!-- Icon -->
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.1947 7.06802L14.6315 7.9985C14.2476 7.31186 13.712 6.71921 13.0544 6.25992C12.8525 6.11877 12.6421 5.99365 12.4252 5.88303C13.0586 5.25955 13.452 4.39255 13.452 3.43521C13.452 1.54098 11.9124 -1.90735e-06 10.0197 -1.90735e-06C8.12714 -1.90735e-06 6.58738 1.54098 6.58738 3.43521C6.58738 4.39255 6.98075 5.25955 7.61414 5.88303C7.39731 5.99365 7.1869 6.11877 6.98502 6.25992C6.32752 6.71921 5.79178 7.31186 5.40787 7.9985L2.8447 7.06802C2.33612 6.88339 1.79688 7.26044 1.79688 7.80243V16.5178C1.79688 16.8465 2.00256 17.14 2.31155 17.2522L9.75312 19.9536C9.93073 20.018 10.1227 20.0128 10.2863 19.9536L17.7278 17.2522C18.0368 17.14 18.2425 16.8465 18.2425 16.5178V7.80243C18.2425 7.26135 17.704 6.88309 17.1947 7.06802ZM10.0197 1.5625C11.0507 1.5625 11.8895 2.40265 11.8895 3.43521C11.8895 4.46777 11.0507 5.30792 10.0197 5.30792C8.98866 5.30792 8.14988 4.46777 8.14988 3.43521C8.14988 2.40265 8.98866 1.5625 10.0197 1.5625ZM9.23844 18.1044L3.35938 15.9703V8.91724L9.23844 11.0513V18.1044ZM10.0197 9.67255L6.90644 8.54248C7.58164 7.51892 8.75184 6.87042 10.0197 6.87042C11.2875 6.87042 12.4577 7.51892 13.1329 8.54248L10.0197 9.67255ZM16.68 15.9703L10.8009 18.1044V11.0513L16.68 8.91724V15.9703Z" fill="currentColor"/>
+                                    </svg>
+
+                                </div>
+                                <h6 class="mb-0 ms-3 me-auto">Enrolled</h6>
+                                <span>1982 students</span>
+                            </li> {% endcomment %}
+
+                                <a href="course-single-v5.html" class="mx-auto fw-medium d-flex align-items-center mt-2" style="color:#437FC7;">
+                                    <!-- Icon -->
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.0283 6.25C14.3059 6.25 12.9033 4.84833 12.9033 3.125C12.9033 1.40167 14.3059 0 16.0283 0C17.7509 0 19.1533 1.40167 19.1533 3.125C19.1533 4.84833 17.7509 6.25 16.0283 6.25ZM16.0283 1.25C14.995 1.25 14.1533 2.09076 14.1533 3.125C14.1533 4.15924 14.995 5 16.0283 5C17.0616 5 17.9033 4.15924 17.9033 3.125C17.9033 2.09076 17.0616 1.25 16.0283 1.25Z" fill="currentColor"/>
+                                        <path d="M16.0283 20C14.3059 20 12.9033 18.5983 12.9033 16.875C12.9033 15.1517 14.3059 13.75 16.0283 13.75C17.7509 13.75 19.1533 15.1517 19.1533 16.875C19.1533 18.5983 17.7509 20 16.0283 20ZM16.0283 15C14.995 15 14.1533 15.8408 14.1533 16.875C14.1533 17.9092 14.995 18.75 16.0283 18.75C17.0616 18.75 17.9033 17.9092 17.9033 16.875C17.9033 15.8408 17.0616 15 16.0283 15Z" fill="currentColor"/>
+                                        <path d="M3.94531 13.125C2.22275 13.125 0.820312 11.7233 0.820312 10C0.820312 8.27667 2.22275 6.875 3.94531 6.875C5.66788 6.875 7.07031 8.27667 7.07031 10C7.07031 11.7233 5.66788 13.125 3.94531 13.125ZM3.94531 8.125C2.91199 8.125 2.07031 8.96576 2.07031 10C2.07031 11.0342 2.91199 11.875 3.94531 11.875C4.97864 11.875 5.82031 11.0342 5.82031 10C5.82031 8.96576 4.97864 8.125 3.94531 8.125Z" fill="currentColor"/>
+                                        <path d="M6.12066 9.39154C5.90307 9.39154 5.69143 9.27817 5.57729 9.0766C5.40639 8.77661 5.51061 8.39484 5.8106 8.22409L13.5431 3.81568C13.8422 3.64325 14.2247 3.74823 14.3947 4.04914C14.5656 4.34912 14.4614 4.73075 14.1614 4.90164L6.42888 9.30991C6.33138 9.36484 6.22564 9.39154 6.12066 9.39154Z" fill="currentColor"/>
+                                        <path d="M13.8524 16.2665C13.7475 16.2665 13.6416 16.2398 13.5441 16.1841L5.81151 11.7757C5.51152 11.6049 5.40745 11.2231 5.5782 10.9232C5.74818 10.6224 6.12996 10.5182 6.42994 10.6899L14.1623 15.0981C14.4623 15.269 14.5665 15.6506 14.3958 15.9506C14.2807 16.1531 14.0691 16.2665 13.8524 16.2665Z" fill="currentColor"/>
+                                    </svg>
+
+                                    <span class="ms-3">Share this course</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <form method="post" action="{% url 'reviews' course.id %}">
+                    {% csrf_token %}
+                <div class="border shadow rounded p-6 p-md-8">
+                        <h3 class="mb-2">Add Reviews & Rate</h3>
+                        <div class="">What is it like to Course?</div>
+
+                            <div class="clearfix">
+                                <fieldset class="slect-rating mb-3">
+                                    <input type="radio" id="star5" name="rating" value="5" />
+                                    <label class = "full" for="star5" title="Awesome - 5 stars"></label>
+
+                                    <input type="radio" id="star4half" name="rating" value="4 and a half" />
+                                    <label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+
+                                    <input type="radio" id="star4" name="rating" value="4" />
+                                    <label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+
+                                    <input type="radio" id="star3half" name="rating" value="3 and a half" />
+                                    <label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+
+                                    <input type="radio" id="star3" name="rating" value="3" />
+                                    <label class = "full" for="star3" title="Meh - 3 stars"></label>
+
+                                    <input type="radio" id="star2half" name="rating" value="2 and a half" />
+                                    <label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+
+                                    <input type="radio" id="star2" name="rating" value="2" />
+                                    <label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+
+                                    <input type="radio" id="star1half" name="rating" value="1 and a half" />
+                                    <label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+
+                                    <input type="radio" id="star1" name="rating" value="1" />
+                                    <label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+
+                                    <input type="radio" id="starhalf" name="rating" value="half" />
+                                    <label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                </fieldset>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="exampleInputTitle1">Student Name</label>
+                                <input type="text" class="form-control placeholder-1" id="studentname" name="studentname" placeholder="Courses">
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="exampleInputTitle1">Review Title</label>
+                                <input type="text" class="form-control placeholder-1" id="reviewtitle" name="reviewtitle" placeholder="Courses">
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label for="exampleFormControlTextarea1">Review Content</label>
+                                <textarea class="form-control placeholder-1" id="reviewcontent" rows="4" placeholder="Content" name="reviewcontent"></textarea>
+                            </div>
+                              <input type="hidden" name="course_id" value="{{ course.id }}">
+                            <button type="submit" class="btn btn-sm text-light btn-block mw-md-300p" style="background-color:#437FC7;">SUBMIT REVIEW</button>
+                        </form>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

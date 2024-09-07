@@ -1,0 +1,88 @@
+{% load static %}
+
+<header class="navbar navbar-expand-xl navbar-light" style="height:80px;background-color:white;">
+    <div class="container">
+
+        <!-- Brand -->
+        <a class="navbar-brand" href="{% url 'home1' %}">
+            <img src="{% static 'assets/img/Tutorlyhub_logo_4.png' %}" class="navbar-brand-img" alt="...">
+        </a>
+
+        <!-- Vertical Menu -->
+        <ul class="navbar-nav navbar-vertical ms-xl-4 d-none d-xl-flex">
+            <!-- Add your vertical menu items here if needed -->
+        </ul>
+
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse z-index-lg" id="navbarCollapse">
+
+            <!-- Navigation -->
+            <ul class="navbar-nav ms-auto">
+                <!-- Display these links only when the user is not logged in -->
+                {% if not loginn.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:#437FD7" href="{% url 'tutors_all' %}">
+                            <span>Find a Tutor</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:#437FD7" href="{% url 'contact_us' %}">
+                            <span>Contact Us</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:#437FD7" href="{% url 'about_us' %}">
+                            About Us
+                        </a>
+                    </li>
+                {% endif %}
+
+                <!-- Display these links only when the user is logged in -->
+                {% if loginn.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:#437FD7" href="#">
+                            Messages
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:#437FD7" href="{% url 'contact_us' %}">
+                            Contact Us
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown border-0 px-1 px-md-3">
+                        <a class="nav-link dropdown" style="color:#437FC7;" id="user" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                            Welcome, {{ user.first_name|default:user.username }}
+                        </a>
+                        <ul class="dropdown-menu border-xl shadow-none" aria-labelledby="user">
+                            <li class="dropdown-item">
+                                <a class="dropdown-link active" style="color:#437FC7;" href="{% url 'profile' %}">
+                                    Account
+                                </a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="{% url 'logout' %}" style="color:#437FC7;" class="dropdown-link">
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <!-- Search, Account & Cart -->
+        <ul class="navbar-nav flex-row ms-n4 ms-sm-auto ms-xl-0 me-n2 me-md-n4">
+            <!-- Add your search, account, and cart icons here if needed -->
+        </ul>
+
+        <!-- Toggler -->
+        <button class="navbar-toggler ms-4 ms-md-5 shadow-none bg-teal text-white icon-xs p-0 outline-0 h-40p w-40p d-flex d-xl-none place-flex-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <!-- Icon -->
+            <svg width="25" height="17" viewBox="0 0 25 17" xmlns="http://www.w3.org/2000/svg">
+                <rect width="25" height="1" fill="currentColor"/>
+                <rect y="8" width="15" height="1" fill="currentColor"/>
+                <rect y="16" width="20" height="1" fill="currentColor"/>
+            </svg>
+        </button>
+    </div>
+</header>

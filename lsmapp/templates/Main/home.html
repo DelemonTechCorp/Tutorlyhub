@@ -1,0 +1,725 @@
+{% extends 'basetutor.html' %}
+ {% block title %}HOME{% endblock %}
+{% load static %}
+{% block content %}
+ {% load course_tags %}
+
+<!-- HERO
+    ================================================== -->
+    <style>
+    .animation-item{
+    background-color: white;
+    display: flex;
+    width:100%;
+    align-items: center;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;;
+    flex-direction: column;
+    height:300px;
+    justify-content: space-evenly;
+
+}
+.animation-item a{
+  font-size:16px;
+  text-transform:uppercase;
+}
+.tutor-reviews{
+  display: flex;
+  align-items: center;
+  height: 300px;
+  overflow-x: hidden;
+}
+.tutor-review-card{
+  min-width:400px;
+  height: 250px;
+  margin-right: 20px;
+  animation: scrollreview 10s linear infinite;
+}
+@keyframes scrollreview {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.tutor-reviews:hover .tutor-review-card{
+    animation-play-state: paused;
+}
+.wrapper {
+  height: 400px;
+  display: flex;
+  align-items: center;
+  overflow-x: hidden; /* Change to hidden to prevent double scrollbar */
+  background: linear-gradient(to bottom, #437FC7 50%, white 50%);
+}
+
+.wrapper .item {
+  min-width: 300px;
+  height: 300px;
+  text-align: center;
+  background-color: #ffffff;
+  margin-right: 10px;
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  /* Animation */
+  animation: scrollLeft 5s linear infinite;
+}
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.wrapper:hover .item{
+    animation-play-state: paused;
+}
+.item p{
+  font-size: 15px;
+}
+.student-image{
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid #437FC7;
+}
+.student-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.testimonials-clean {
+  color:#313437;
+  background-color:#eef4f7;
+}
+
+.testimonials-clean p {
+  color:#7d8285;
+}
+
+.testimonials-clean h2 {
+  font-weight:bold;
+  margin-bottom:40px;
+  padding-top:40px;
+  color:#437FD7;
+}
+.box {
+  padding:30px;
+  background-color:#437FC7;
+  position:relative;
+}
+
+.box:after {
+  content:'';
+  position:absolute;
+  left:30px;
+  bottom:-24px;
+  width:0;
+  height:0;
+  border:15px solid transparent;
+  border-width:12px 15px;
+  border-top-color:#437FC7;
+}
+
+.author {
+  margin-top:28px;
+  padding-left:25px;
+}
+
+.name {
+  font-weight:bold;
+  margin-bottom:2px;
+  color:#437FD7;
+}
+
+.title {
+  font-size:13px;
+  color:#9da9ae;
+}
+
+.description {
+  font-size:15px;
+  margin-bottom:0;
+  color:white;
+}
+
+.author img {
+  max-width:40px;
+  float:left;
+  margin-right:12px;
+  margin-top:-5px;
+}
+@media (max-width:767px) {
+  .testimonials-clean h2 {
+    margin-bottom:25px;
+    padding-top:25px;
+    font-size:24px;
+  }
+}
+
+.testimonials-clean .intro {
+  font-size:16px;
+  max-width:500px;
+  margin:0 auto;
+}
+
+.testimonials-clean .intro p {
+  margin-bottom:0;
+}
+
+.testimonials-clean .people {
+  padding:50px 0 20px;
+}
+
+.testimonials-clean .item {
+  margin-bottom:32px;
+}
+
+@media (min-width:768px) {
+  .testimonials-clean .item {
+    height:220px;
+  }
+
+}
+
+.testimonials-clean .item .box {
+  padding:30px;
+  background-color:#437FC7;
+  position:relative;
+}
+
+.testimonials-clean .item .box:after {
+  content:'';
+  position:absolute;
+  left:30px;
+  bottom:-24px;
+  width:0;
+  height:0;
+  border:15px solid transparent;
+  border-width:12px 15px;
+  border-top-color:#437FC7;
+}
+
+.testimonials-clean .item .author {
+  margin-top:28px;
+  padding-left:25px;
+}
+
+.testimonials-clean .item .name {
+  font-weight:bold;
+  margin-bottom:2px;
+  color:#437FD7;
+}
+
+.testimonials-clean .item .title {
+  font-size:13px;
+  color:#9da9ae;
+}
+
+.testimonials-clean .item .description {
+  font-size:15px;
+  margin-bottom:0;
+  color:white;
+}
+
+.testimonials-clean .item img {
+  max-width:40px;
+  float:left;
+  margin-right:12px;
+  margin-top:-5px;
+}
+.banner-image{
+  width: 400px;
+  height: 400px;
+}
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.logos {
+  overflow: hidden;
+  padding: 60px 0;
+  background: white;
+  white-space: nowrap;
+  position: relative;
+}
+.logos:before,
+.logos:after {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  content: "";
+  z-index: 2;
+}
+
+.logos:before {
+  left: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+}
+
+.logos:after {
+  right: 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+}
+
+.logos:hover .logos-slide {
+  animation-play-state: paused;
+}
+
+.logos-slide {
+  display: inline-block;
+  animation: 25s slide infinite linear;
+}
+
+.logos-slide img {
+  height: 100px;
+  width:100px;
+  margin: 0 40px;
+}
+.our-mission{
+    width: 90%;
+    height: 200px;
+    margin: auto;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+}
+.our-mission h1{
+    color: #437FC7;
+}
+.our-mission-2{
+    width: 90%;
+    height: 200px;
+    margin: auto;
+    display: flex;
+    align-items:flex-start;
+    justify-content: space-evenly;
+    flex-direction: column;
+
+}
+
+.home-testimonial{background-color:#437FC7;height: 380px}.home-testimonial-bottom{background-color: #f8f8f8;transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;margin-top: 20px;margin-bottom: 0px;position: relative;height: 130px;top: 190px}.home-testimonial h3{color: var(--orange);font-size: 14px;font-weight: 500;text-transform: uppercase}.home-testimonial h2{color: white;font-size: 28px;font-weight: 700}.testimonial-inner{position: relative;top: -174px}.testimonial-pos{position: relative;top: 24px}.testimonial-inner .tour-desc{border-radius: 5px;padding: 40px}.color-grey-3{font-family: "Montserrat", Sans-serif;font-size: 14px;color: #6c83a2}.testimonial-inner img.tm-people{width: 60px;height: 60px;-webkit-border-radius: 50%;border-radius: 50%;-o-object-fit: cover;object-fit: cover;max-width: none}.link-name{font-family: "Montserrat", Sans-serif;font-size: 14px;color: #6c83a2}.link-position{font-family: "Montserrat", Sans-serif;font-size: 12px;color: #6c83a2}
+@media(max-width:500px){
+  .home-testimonial{
+    display: none;
+  }
+  .banner-image{
+    height: 200px;
+    width: 200px;
+  }
+  .home-page-container{
+    background-color: white;
+  }
+
+}
+</style>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<section class="home-page-container" style="margin-top: 50px;height:80vh;">
+  <div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+    <h1 class="display-1 fw-bold" style="color:#437FC7;" data-aos-duration="150">Teach Without Limits</h1>
+    <p>Start, switch, or advance your career with more than 3000 students, Professional methods, and students from world-wide universities and colleges.</p>
+    </div>
+    <div class="col-md-6 text-center">
+    <img src="{% static 'assets/img/icons/banner.png' %}" class="banner-image"/>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- FEATURED PRODUCT
+    ================================================== -->
+<!--<div class="container-fluid mt-5 mb-2">-->
+<!--    <h1 class="text-center mb-5" style="color:#437FC7;">Finding the Perfect Tutor is Easy</h1>-->
+<!--  <div class="row justify-content-center">-->
+<!--    <div class="col-md-4">-->
+<!--    <div class="animation-item">-->
+<!--        <lottie-player-->
+<!--          src="{% static 'assets/img/illustrations/animation1.json' %}"-->
+<!--          background="transparent"-->
+<!--          speed="2"-->
+<!--          style="width: 80%; height: 80%"-->
+<!--          loop-->
+<!--          autoplay-->
+<!--        ></lottie-player>-->
+<!--        <a href="{% url 'tutors_all' %}" class="text-none text-center">Choose your tutor</a>-->
+<!--      </div>-->
+<!--      </div>-->
+<!--      <div class="col-md-4">-->
+<!--      <div class="animation-item">-->
+<!--        <lottie-player-->
+<!--          src="{% static 'assets/img/illustrations/animation2.json' %}"-->
+<!--          background="transparent"-->
+<!--          speed="2"-->
+<!--          style="width: 80%; height: 80%"-->
+<!--          loop-->
+<!--          autoplay-->
+<!--        ></lottie-player>-->
+<!--        <a href="#" class="text-none text-center">Share your goals</a>-->
+<!--      </div>-->
+<!--      </div>-->
+<!--      <div class="col-md-4">-->
+<!--      <div class="animation-item">-->
+<!--        <lottie-player-->
+<!--          src="{% static 'assets/img/illustrations/animation3.json' %}"-->
+<!--          background="transparent"-->
+<!--          speed="2"-->
+<!--          style="width: 80%; height: 80%;"-->
+<!--          loop-->
+<!--          autoplay-->
+<!--        ></lottie-player>-->
+<!--        <a href="#" class="text-center">Book your lesson</a>-->
+<!--      </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+  <div class="white-space"></div>
+  <div class="container-fluid mb-5">
+    <h1 class="text-center" style="color:#437FC7;">Tutors From Top Universities</h1>
+    </div>
+    <div class="logos">
+      <div class="logos-slide">
+        <img src="{% static 'assets/img/university6.png' %}" />
+        <img src="{% static 'assets/img/university1.png' %}" />
+        <img src="{% static 'assets/img/university7.png' %}" />
+        <img src="{% static 'assets/img/university3.png' %}" />
+        <img src="{% static 'assets/img/university8.png' %}" />
+        <img src="{% static 'assets/img/university2.png' %}" />
+        <img src="{% static 'assets/img/university10.png' %}" />
+        <img src="{% static 'assets/img/university9.png' %}" />
+        <img src="{% static 'assets/img/university4.png' %}" />
+        <img src="{% static 'assets/img/university5.png' %}" />
+      </div>
+      <div class="logos-slide">
+        <img src="{% static 'assets/img/university6.png' %}" />
+        <img src="{% static 'assets/img/university1.png' %}" />
+        <img src="{% static 'assets/img/university7.png' %}" />
+        <img src="{% static 'assets/img/university3.png' %}" />
+        <img src="{% static 'assets/img/university8.png' %}" />
+        <img src="{% static 'assets/img/university2.png' %}" />
+        <img src="{% static 'assets/img/university10.png' %}" />
+        <img src="{% static 'assets/img/university9.png' %}" />
+        <img src="{% static 'assets/img/university4.png' %}" />
+        <img src="{% static 'assets/img/university5.png' %}" />
+      </div>
+    </div>
+<!-- FEATURES GENERAL
+    ================================================== -->
+ <!--<div class="container-fluid mt-5">-->
+ <!--     <div class="row justify-content-center">-->
+ <!--     <div class="col-md-6">-->
+ <!--     <div class="our-mission">-->
+ <!--     <h1>Learn at your own pace</h1>-->
+ <!--     </div>-->
+ <!--     </div>-->
+ <!--     <div class="col-md-6">-->
+ <!--      <div class="our-mission-2">-->
+ <!--     <span>Discover the freedom of learning at your own pace with our tutoring website. Our personalized and flexible approach empowers you to set your own learning rhythm, allowing you to delve into subjects at a comfortable speed that suits your individual needs.</span>-->
+ <!--     </div>-->
+ <!--     </div>-->
+ <!--     </div>-->
+ <!--     </div>-->
+
+ <!--     <div class="container-fluid mb-5">-->
+ <!--     <div class="row justify-content-center">-->
+ <!--           <div class="col-md-6 communitytextmobile mb-3">-->
+ <!--      <div class="our-mission">-->
+ <!--      <h1 class="text-center">Community of opportunities</h1>-->
+ <!--     </div>-->
+ <!--     </div>-->
+ <!--     <div class="col-md-6">-->
+ <!--     <div class="our-mission-2">-->
+ <!--       <span>Embark on a journey within our vibrant 'Communities of Opportunities.' Our platform is not just a space for learning; it's a dynamic hub where knowledge meets collaboration, creating an environment that nurtures growth and success. Connect with like-minded individuals, mentors, and experts who share your passions and aspirations.</span>-->
+ <!--     </div>-->
+ <!--     </div>-->
+ <!--     <div class="col-md-6 communitytextmobile2">-->
+ <!--      <div class="our-mission">-->
+ <!--      <h1 class="text-center">Community of opportunities</h1>-->
+ <!--     </div>-->
+ <!--     </div>-->
+ <!--     </div>-->
+ <!--     </div>-->
+
+<!------------------------------ testimonial------------------->
+{% comment %} <section class="home-testimonial mb-5">
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center testimonial-pos">
+            <div class="col-md-12 pt-4 d-flex justify-content-center">
+                <h3 class="text-light">Our Students Reviews</h3>
+            </div>
+            <div class="col-md-12 d-flex justify-content-center">
+                <h2>Explore the Students Experience</h2>
+            </div>
+        </div>
+        <section class="home-testimonial-bottom">
+            <div class="container testimonial-inner">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-4 style-3">
+                        <div class="tour-item ">
+                            <div class="tour-desc bg-white">
+                                <div class="tour-text color-grey-3 text-center">&ldquo;{{ review.reviewcontent }}&rdquo;</div>
+                                <div class="d-flex justify-content-center pt-2 pb-2"><img class="tm-people" src="https://images.pexels.com/photos/6625914/pexels-photo-6625914.jpeg" alt=""></div>
+                                <div class="link-name d-flex justify-content-center">{{ i.studentname }}</div>
+                                <div class="link-position d-flex justify-content-center">Student</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 style-3">
+                        <div class="tour-item ">
+                            <div class="tour-desc bg-white">
+                                <div class="tour-text color-grey-3 text-center">&ldquo;At this School, our mission is to balance a rigorous comprehensive college preparatory curriculum with healthy social and emotional development.&rdquo;</div>
+                                <div class="d-flex justify-content-center pt-2 pb-2"><img class="tm-people" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""></div>
+                                <div class="link-name d-flex justify-content-center">Balbir Kaur</div>
+                                <div class="link-position d-flex justify-content-center">Student</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 style-3">
+                        <div class="tour-item ">
+                            <div class="tour-desc bg-white">
+                                <div class="tour-text color-grey-3 text-center">&ldquo;At this School, our mission is to balance a rigorous comprehensive college preparatory curriculum with healthy social and emotional development.&rdquo;</div>
+                                <div class="d-flex justify-content-center pt-2 pb-2"><img class="tm-people" src="https://images.pexels.com/photos/4946604/pexels-photo-4946604.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""></div>
+                                <div class="link-name d-flex justify-content-center">Balbir Kaur</div>
+                                <div class="link-position d-flex justify-content-center">Student</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+</section> {% endcomment %}
+<!---------------------------------->
+<div class="mt-5 mb-5" style="">
+  <h2 class="text-center" style="color: #437FC7;">Explore Our Students Experience</h2>
+</div>
+<div class="wrapper">
+<div class="item">
+<p>"I thought the course was well organized, clear and easy to follow and the instructor was very knowledgeable with excellent presentation skills."</p>
+<div class="student-image">
+  <img src="https://www.capture.se/Portals/0/Users/156/84/73884/profile.jpg?ver=6oySpRVYrzGFIctKZ6pqcw%3D%3D" alt="">
+</div>
+<span>Jane Thomas</span>
+</div>
+<div class="item">
+  <p>"I thought the course was well organized, clear and easy to follow and the instructor was very knowledgeable with excellent presentation skills."</p>
+  <div class="student-image">
+    <img src="https://www.capture.se/Portals/0/Users/156/84/73884/profile.jpg?ver=6oySpRVYrzGFIctKZ6pqcw%3D%3D" alt="">
+  </div>
+  <span>Jane Thomas</span></div>
+<div class="item">
+  <p>"I thought the course was well organized, clear and easy to follow and the instructor was very knowledgeable with excellent presentation skills."</p>
+  <div class="student-image">
+    <img src="https://www.capture.se/Portals/0/Users/156/84/73884/profile.jpg?ver=6oySpRVYrzGFIctKZ6pqcw%3D%3D" alt="">
+  </div>
+  <span>Jane Thomas</span></div>
+<div class="item">
+  <p>"I thought the course was well organized, clear and easy to follow and the instructor was very knowledgeable with excellent presentation skills."</p>
+  <div class="student-image">
+    <img src="https://www.capture.se/Portals/0/Users/156/84/73884/profile.jpg?ver=6oySpRVYrzGFIctKZ6pqcw%3D%3D" alt="">
+  </div>
+  <span>Jane Thomas</span></div>
+<div class="item">
+  <p>"I thought the course was well organized, clear and easy to follow and the instructor was very knowledgeable with excellent presentation skills."</p>
+  <div class="student-image">
+    <img src="https://www.capture.se/Portals/0/Users/156/84/73884/profile.jpg?ver=6oySpRVYrzGFIctKZ6pqcw%3D%3D" alt="">
+  </div>
+  <span>Jane Thomas</span></div>
+</div>
+<!--------------------------------------------------->
+ <div class="container mt-5 mb-3">
+                <h2 class="text-center"  style="color:#437FC7;">Tutors Reviews</h2>
+                <p class="text-center"  style="color:#437FC7;">Our students love us! Read what they have to say below. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae.</p>
+            </div>
+            <div class="tutor-reviews">
+              <div class="tutor-review-card">
+                    <div class="box">
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                    </div>
+                    <div class="author"><img class="rounded-circle" src="{% static 'assets/img/photos/photo-2.jpg' %}">
+                        <h5 class="name">Ben Johnson</h5>
+                        <p class="title">Physics Tutor</p>
+                    </div>
+                  </div>
+                  <div class="tutor-review-card">
+                    <div class="box">
+                        <p class="description">Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, et interdum justo suscipit id.</p>
+                    </div>
+                    <div class="author"><img class="rounded-circle" src="{% static 'assets/img/photos/photo-1.jpg' %}">
+                        <h5 class="name">Carl Kent</h5>
+                        <p class="title">Maths Tutor</p>
+                    </div>
+                    </div>
+                    <div class="tutor-review-card">
+                    <div class="box">
+                        <p class="description">Aliquam varius finibus est, et interdum justo suscipit. Vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu.</p>
+                    </div>
+                    <div class="author"><img class="rounded-circle" src="{% static 'assets/img/photos/photo-2.jpg' %}">
+                        <h5 class="name">Emily Clark</h5>
+                        <p class="title">English Tutor</p>
+                    </div>
+                    </div>
+                  </div>
+<!----------------------------------testimonial-------------------->
+<div class="py-5 pt-md-11 bg-white">
+  <div class="container">
+    <div class="row w-xl-96 mx-xl-auto text-center">
+      <div class="col-md-3 mb-6 mb-md-0">
+        <div class="h1">
+          <span
+            data-toggle="countup"
+            data-from="0"
+            data-to="3000"
+            data-aos
+            data-aos-id="countup:in"
+            class="text-blue"
+          ></span>
+        </div>
+        <p class="font-size-lg fw-medium mb-0">Total Students</p>
+      </div>
+
+      <div class="col-md-3 mb-6 mb-md-0">
+        <div class="h1">
+          <span
+            data-toggle="countup"
+            data-from="0"
+            data-to="853"
+            data-aos
+            data-aos-id="countup:in"
+            class="text-blue"
+          ></span>
+        </div>
+        <p class="font-size-lg fw-medium mb-0">Skilled Tutors</p>
+      </div>
+
+      <div class="col-md-3 mb-6 mb-md-0">
+        <div class="h1">
+          <span
+            data-toggle="countup"
+            data-from="0"
+            data-to="28"
+            data-aos=""
+            data-aos-id="countup:in"
+            class="text-blue"
+          ></span
+          ><span class="text-blue">k+</span>
+        </div>
+        <p class="font-size-lg fw-medium mb-0">Online Courses</p>
+      </div>
+
+      <div class="col-md-3 mb-6 mb-md-0">
+        <div class="h1">
+          <span
+            data-toggle="countup"
+            data-from="0"
+            data-to="53"
+            data-aos=""
+            data-aos-id="countup:in"
+            class="text-blue"
+          ></span
+          ><span class="text-blue">k+</span>
+        </div>
+        <p class="font-size-lg fw-medium mb-0">People Worldwide</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWSLETTER & SOCIAL
+    ================================================== -->
+<section class="pt-5 pt-md-11 pb-md-12 bg-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mb-10 mb-md-0">
+        <h3 class="text-center mb-5">Our Latest Tweets</h3>
+        <div
+          class="text-center mx-xl-10 text-capitalize"
+          data-flickity='{"pageDots": true, "prevNextButtons": false, "cellAlign": "left", "wrapAround": true, "imagesLoaded": true}'
+        >
+          <div class="col-12 mb-4 px-2">
+            <div class="mb-3 h2 text-dark">
+              <i class="fab fa-x-twitter"></i>
+            </div>
+            <a href="#" class="">@Tutorlyhub</a>
+            <p class="mb-2">
+              Getting the necessary clarity about the current state to help you
+              improve your game.
+            </p>
+            <span class="text-primary font-size-sm">06 April 2020</span>
+          </div>
+
+          <div class="col-12 mb-4 px-2">
+            <div class="mb-3 h2 text-dark">
+              <i class="fab fa-x-twitter"></i>
+            </div>
+            <a href="#" class="">@Tutorlyhub</a>
+            <p class="mb-2">
+              Getting the necessary clarity about the current state to help you
+              improve your game.
+            </p>
+            <span class="text-primary font-size-sm">06 April 2020</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <h3 class="text-center mb-4">Subscribe our newsletter</h3>
+        <p class="mb-5 mx-xl-10 text-center">
+          Your download should start automatically, if not Click here. Should I
+          give up, huh?.
+        </p>
+        <div class="mx-xl-8">
+          <form>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control rounded-left-lg placeholder-1"
+                placeholder="Enter your email"
+                aria-label="Enter your email"
+                aria-describedby="button-addon2"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-blue px-5 rounded-right-lg"
+                  type="button"
+                  id="button-addon2"
+                >
+                  Subscribe
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+    $('.select2').select2();
+</script>
+<!-- CALL ACTION
+    ================================================== -->
+
+{% endblock %}

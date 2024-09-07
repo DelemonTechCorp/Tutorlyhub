@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %}FORM{% endblock %}
+{% load static %}
+{% block content %}
+{% load course_tags %}
+<div class="form-header" style="height:100px">
+</div>
+<div class="conatiner">
+<div class="row justify-content-center">
+<div class="col-md-5 mx-5">
+<div class="lesson-options-card" style="height:80%; width:100%; border-radius:5px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding:20px;">
+<h5 class="text-center">Secure your teacher now
+Pay now for your first 2 weeks lessons.</h5>
+<form get="" action="">
+        <div class="form-group mb-4">
+          <select class="form-select" aria-label="Default select example">
+  <option selected>One lesson per week</option>
+  <option value="1">Two lesson per week</option>
+</select>
+        </div>
+        <div class="form-group mb-4">
+        <select class="form-select" aria-label="Default select example">
+  <option selected>1 hour 30 mint per lesson</option>
+  <option value="1">1 hour per lesson</option>
+</select>
+        </div>
+        <div class="form-group mb-4">
+<select class="form-select" aria-label="Default select example">
+  <option selected>1 person per lesson</option>
+  <option value="1">2 people per lesson</option>
+  <option value="2">3 people per lesson</option>
+  <option value="3">4 people per lesson</option>
+</select>
+        </div>
+</div>
+</div>
+<div class="col-md-5 mx-5">
+<div class="payment-options-card" style="height:100%; width:100%; border-radius:5px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding:20px;">
+<h5>Book your first 2 weeks of private lessons now by filling up your payment details below:</h5>
+        <div class="form-group mb-4">
+          <input type="number" class="form-control" id="name" placeholder="Card number">
+        </div>
+        <div class="form-group mb-4">
+          <input type="text" class="form-control" id="email" placeholder="Holder name">
+        </div>
+      <div class="form-group mb-4">
+            <div class="d-flex">
+                <div class="mr-2" style="flex: 1;">
+                    <input type="number" class="form-control" id="expiryDate" placeholder="Expiry date">
+                </div>
+                <div style="flex: 1;">
+                    <input type="number" class="form-control" id="cvc" placeholder="CVC">
+                </div>
+            </div>
+        </div>
+        <div class="form-group mb-4">
+        <a class="btn text-light w-100" href="#" style="background-color:#437FC7;" type="submit">Book now</a>
+
+        </div>
+        </form>
+        <div class="form-group mb-4">
+         <div class="row">
+        <div class="col-3">
+            <img src="{% static 'assets/img/icons/credit1.png' %}" alt="Image 1" class="img-fluid">
+        </div>
+        <div class="col-3">
+            <img src="{% static 'assets/img/icons/credit2.png' %}" alt="Image 2" class="img-fluid">
+        </div>
+        <div class="col-3">
+            <img src="{% static 'assets/img/icons/credit3.png' %}" alt="Image 3" class="img-fluid" >
+        </div>
+        <div class="col-3">
+            <img src="{% static 'assets/img/icons/credit4.png' %}" alt="Image 4" class="img-fluid">
+        </div>
+    </div>
+
+
+        </div>
+      </div>
+</div>
+</div>
+</div>
+
+
+
+{%endblock%}

@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% block title %}FORM{% endblock %}
+{% load static %}
+{% block content %}
+{% load course_tags %}
+<div class="header-container" style="height:100px;">
+<h5 class="text-center">The TutorlyHub team and your tutor will get back to you shortly.</h5>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-5 mx-5">
+    <div class="message-options-card" style="height:100%; width:100%; border-radius:5px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding:20px;">
+      <form>
+        <div class="form-group mb-4">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="What's your name">
+          <p class="error-message" style="color:red;" id="name-error"></p>
+        </div>
+        <div class="form-group mb-4">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="What's your email">
+          <p class="error-message" style="color:red;" id="email-error"></p>
+        </div>
+        <div class="form-group mb-4">
+          <label for="phone">Message:</label>
+<textarea id="message" name="message" class="form-control" rows="4" cols="20">
+</textarea>
+<p class="error-message" style="color:red;" id="message-error"></p>
+        </div>
+      </div>
+</div>    
+<div class="col-md-6 mx-5"> 
+<div class="tutor-options-card" style="height:100%; width:100%; border-radius:5px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding:20px;">
+<div class="col-md-12 mb-8 mt-5">
+  <div class="row justify-content-center">
+    <h5 class="text-center">When would you like to meet the teacher?</h5>
+    
+    <div class="col-md-3 mb-3">
+      <div class="btn-group d-flex" role="group">
+        <input type="radio" class="btn-check " name="meeting-time" id="morning" autocomplete="off">
+        <label class="btn btn-outline-primary btn-sm" for="morning">Morning</label>
+      </div>
+    </div>
+    
+    <div class="col-md-3 mb-3">
+      <div class="btn-group d-flex" role="group">
+        <input type="radio" class="btn-check" name="meeting-time" id="afternoon" autocomplete="off">
+        <label class="btn btn-outline-primary btn-sm" for="afternoon">Afternoon</label>
+      </div>
+    </div>
+    
+    <div class="col-md-3 mb-3">
+      <div class="btn-group d-flex" role="group">
+        <input type="radio" class="btn-check" name="meeting-time" id="evening" autocomplete="off">
+        <label class="btn btn-outline-primary btn-sm" for="evening">Evening</label>
+      </div>
+    </div>
+    
+    <div class="col-md-3 mb-3">
+      <div class="btn-group d-flex" role="group">
+        <input type="radio" class="btn-check" name="meeting-time" id="weekend" autocomplete="off">
+        <label class="btn btn-outline-primary btn-sm" for="weekend">Weekend</label>
+      </div>
+    </div>
+          <p class="text-center" style="color:red;" id="time-error"></p>
+  </div>
+</div>
+
+<div class="col-md-12 mb-8">
+<h5 class="text-center">Will the lessons be for yourself or for your kids?</h5>
+<div class="row justify-content-center">
+<div class="col-md-3">
+<input type="radio" class="btn-check" name="lesson-type" id="myself" autocomplete="off">
+        <label class="btn btn-outline-primary btn-sm" for="myself">My self</label></div>
+<div class="col-md-3">
+<input type="radio" class="btn-check" name="lesson-type" id="mykids" autocomplete="off">
+        <label class="btn btn-outline-primary btn-sm" for="mykids">My kids</label></div>
+</div>
+<p class="text-center" style="color:red;" id="lesson-error"></p>
+</div>
+
+<div class="col-md-12">
+<div class="row justify-content-center">
+<a class="btn w-50 btn-sm text-light" onclick="handlePostComment()" style="background-color:#437FC7;">Submit</a>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+ function handlePostComment() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var message = document.getElementById("message").value;
+
+    var nameError = document.getElementById("name-error");
+    var emailError = document.getElementById("email-error");
+    var messageError = document.getElementById("message-error");
+    var lessonError = document.getElementById("lesson-error");
+    var timeError = document.getElementById("time-error");
+
+    nameError.innerText = "";
+    emailError.innerText = "";
+    messageError.innerText = "";
+    lessonError.innerText = "";
+    timeError.innerText = "";
+
+    if (name.trim() === "") {
+      nameError.innerText = "Please enter your name";
+      return;
+    }
+
+    var emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    if (email.trim() === "" || !emailRegex.test(email)) {
+      emailError.innerText = "Please enter a valid email address";
+      return;
+    }
+    if (message.trim() === "") {
+        messageError.innerText = "Please type a message";
+        return;
+      }
+
+      var meetingTime = document.querySelector('input[name="meeting-time"]:checked');
+   if (!meetingTime) {
+      timeError.innerText = "Please select a meeting time";
+      return;
+   }
+
+         var lessonType = document.querySelector('input[name="lesson-type"]:checked');
+   if (!lessonType) {
+      lessonError.innerText = "Please select lesson type";
+      return;
+   }
+   var lessonTypeValue = lessonType.id;
+   var meetingTimeValue = meetingTime.id;
+
+
+
+
+    var params = {
+      fromname: name,
+      emailid: email,
+      message: message,
+      lessontype: lessonTypeValue,
+      meetingtime: meetingTimeValue
+    };
+
+    emailjs.send("service_x8t0l9h","template_ph3v3ty", params).then(function (res) {
+      alert("Message Sent Successfully!! ");
+    });
+  }
+</script>
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+  emailjs.init('yh87M6_uB3PjTetYn')
+</script>
+
+{% endblock %}
